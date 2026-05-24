@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Получаем путь к файлу с сообщением коммита
+COMMIT_MSG_FILE=$1
+
+# Читаем сообщение коммита
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+# 1. Убираем пробелы в начале и конце
+COMMIT_MSG=$(echo "$COMMIT_MSG" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+
+# 2. Убираем все точки (многоточия) из сообщения
+# Удаляем все точки
+COMMIT_MSG=$(echo "$COMMIT_MSG" | tr -d '.')
+
+# 3. Делаем первую букву заглавной
+# Проверяем, что сообщение не пустое
+if [ -n "$COMMIT_MSG" ]; then
+    # Берем первый символ, делаем его заглавным, остальное оставляем как есть
+    FIRST_CHAR=$(echo "$COMMIT_MSG" | cut -c1)
+    REST=$(echo "$COMMIT_MSG" | cut -c2-)
+    COMMIT_MSG=$(echo "$FIRST_CHAR" | tr '[:lower:]' '[:upper:]')"$REST"
+fi
+
+# Записываем обработанное сообщение обратно в файл
+echo "$COMMIT_MSG" > "$COMMIT_MSG_FILE"

@@ -1,5 +1,16 @@
 {
   "name": "authwithback",
   "private": true,
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "scripts": {
+    "b": "pnpm --filter @authwithback/backend",
+    "f": "pnpm --filter @authwithback/frontend",
+    "dev": "pnpm -r --parallel dev",
+    "types": "concurrently \"pnpm b types\" \"pnpm f types\"",
+    "prettify": "pnpm -r --parallel prettify"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "husky": "8.0.3"
+  }
 }

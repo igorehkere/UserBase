@@ -1,0 +1,26 @@
+@import './vars.scss';
+@import '../../node_modules/reset-css/sass/_reset.scss';
+
+body, html, #root {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: $defaultFontFamily;
+    font-size: $defaultFontSize;
+    background-color: $defaultBackgroundColor;
+    color: $defaultTextColor;
+    line-height: $defaultLineHeight;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}

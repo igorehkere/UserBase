@@ -7,7 +7,6 @@ const users = [
   { id: 4, nick: "user4", name: "Igor 4" },
   { id: 5, nick: "user5", name: "Igor 5" },
 ];
-
 const trpc = initTRPC.create();
 
 export const trpcRouter = trpc.router({

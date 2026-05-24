@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prettify": "prettier --log-level warn --cache --write \"{src/**/*,*}. {ts,tsx,js,json,yml,scss}\" \"!**/{node_modules, dist}/**/*\""
+    "prettify": "prettier --log-level warn --cache --write \"{src/**/*,*}. {ts,tsx,js,json,yml,scss}\" \"!**/{node_modules, dist}/**/*\"",
+    "types": "tsc --noEmit --project ./tsconfig.json && tsc --noEmit --project ./tsconfig.app.json",
+    "stylecheck": "sass --update -q ./src:./node_modules/.cache/.stylecheck"
   },
   "dependencies": {
     "@authwithback/backend": "workspace:*",
@@ -16,7 +18,9 @@
     "@trpc/client": "10.37.1",
     "@trpc/react-query": "10.37.1",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react-dom": "^19.2.6",
+    "reset-css": "^5.0.2",
+    "sass": "^1.100.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
