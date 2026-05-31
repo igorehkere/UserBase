@@ -1,0 +1,40 @@
+.layout {
+    height: 100%;
+    .nav {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px 0 30px;
+        h1 {
+            font-size: 34px;
+            font-family: sans-serif;
+        }
+        .out {
+            font-family: sans-serif;
+        }
+        .btns {
+            font-size: 20px;
+            font-family: sans-serif;
+            height: 45px;
+            padding: 0 10px 0 10px;
+            width: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+        }
+        .btns:hover {
+            background-color: rgb(182, 181, 248);
+            transition: background-color 0.3s ease-in;
+        }
+    }
+    .content {
+        height: 100%;
+    }
+}

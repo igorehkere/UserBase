@@ -1,0 +1,30 @@
+import { useParams } from "react-router-dom";
+import { trpc } from "../../utils/trpc";
+import type { ViewUserRouteParams } from "../../lib/routes";
+import css from "./index.module.scss";
+
+export function UserPage() {
+  const { userName } = useParams() as ViewUserRouteParams;
+  const { data, isError, isLoading, isFetching, error } = trpc.getUser.useQuery(
+    { userName },
+  );
+  if (isLoading || isFetching) {
+    return <div className={css.loading}>Loading...</div>;
+  }
+  if (isError) {
+    return <div className={css.error}>Error: {error.message}</div>;
+  }
+  if (!data.user) {
+    return <div className={css.notfound}>User is not find</div>;
+  }
+  return (
+    <div className={css.container}>
+        <div className={css.card}>
+            <p>Id: {data.user.id}</p>
+            <p>Имя: {data.user.firstname}</p>
+            <p>Фамилия: {data.user.lastname}</p>
+            <p>NickName: {data.user.nick}</p>
+        </div>
+    </div>
+  );
+}

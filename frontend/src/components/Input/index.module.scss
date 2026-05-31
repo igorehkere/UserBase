@@ -1,0 +1,42 @@
+@import '../../styles/vars';
+
+.field {
+    &.disabled {
+        opacity: 0.5;
+    }
+    .label {
+        font-weight: bold;
+        margin-bottom: 2px;
+        display: block;
+    }
+
+    .input {
+        display: block;
+        padding: 7px;
+        border: 1px solid black;
+        border-radius: $borderRaduisSmall;
+        background-color: $white;
+        outline: none;
+        width: 100%;
+        font-family: sans-serif;
+        &:focus {
+            border: 1px solid $blue;
+        }
+        &.invalid {
+            border: 1px solid $red;
+        }
+    }
+    .error {
+        margin-top: 2px;
+        color: $red;
+        font-size: 14px;
+        min-height: 1.2em;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
+        &.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}

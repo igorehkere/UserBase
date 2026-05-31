@@ -1,4 +1,4 @@
-import type { TrpcRouter } from "@authwithback/backend/src/trpc";
+import type { TrpcRouter } from "@authwithback/backend/src/router";
 import { createTRPCReact } from "@trpc/react-query";
 
 

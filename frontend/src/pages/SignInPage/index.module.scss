@@ -1,0 +1,21 @@
+.segmentform {
+    display: flex;
+    background: linear-gradient(to right, rgb(211, 137, 245), rgb(145, 210, 240));
+    height: 100%;
+    padding-top: 50px;
+    justify-content: center;
+    .form {
+        width: 500px;
+        background-color: white;
+        padding: 30px;
+        max-height: 300px;
+        border-radius: 15px;
+        .but {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            align-items: center;
+            gap: 30px
+        }
+    }
+}
