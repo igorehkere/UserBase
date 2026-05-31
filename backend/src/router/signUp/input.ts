@@ -2,13 +2,13 @@ import z from "zod";
 
 export const zSignUpTrpcInput = z.object({
   nick: z
-    .string("Nick is required")
+    .string("Введите ник")
     .min(1)
     .regex(
       /^[a-z0-9-]+$/,
-      "Nick may contain only lowercase letters, numbers and dashes",
+      "Ник может содержать только строчные буквы и цифры",
     ),
-  firstname: z.string("FirstName is required").min(1),
-  lastname: z.string("LastName is required").min(1),
-  password: z.string("Password is required").min(1),
+  firstname: z.string("Введите имя").min(1),
+  lastname: z.string("Введите фамилию").min(1),
+  password: z.string("Введите пароль").min(1),
 });

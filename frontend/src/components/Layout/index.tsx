@@ -16,7 +16,7 @@ export function Layout({us}: props) {
       <nav className={css.nav}>
         <h1>UserBase</h1>
         <div className={css.btns}>
-          <Link to={getAllUsersRoute()}>All Users</Link>
+          <Link to={getAllUsersRoute()}>Пользователи</Link>
         </div>
         <div className={css.out}>
           <p>Здравствуйте, {us.firstname}</p>

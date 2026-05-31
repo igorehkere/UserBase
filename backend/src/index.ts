@@ -4,12 +4,13 @@ import { applyTrpcToExpressApp } from "./lib/trpc";
 import { trpcRouter } from "./router";
 import { type AppContext, createAppContext } from "./lib/ctx";
 import { applyPassportToExpressApp } from "./lib/passport";
+import { env } from "./lib/env";
 
 void (async () => {
   let ctx: AppContext | null = null;
+  const port = env.PORT
   try {
     const expressApp = express();
-    const port = 3000;
     ctx = createAppContext();
     expressApp.use(cors());
     expressApp.get("/ping", (req, res) => {

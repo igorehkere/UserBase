@@ -15,7 +15,7 @@ export function AllUsersPage() {
 
   return (
     <div className={css.container}>
-      <h1>All Users:</h1>
+      <h1>Все пользователи:</h1>
       {data.users.map((user) => {
         return (
           <div className={css.card} key={user.id}>
