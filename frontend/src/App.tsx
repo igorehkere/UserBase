@@ -6,18 +6,18 @@ import { UserPage } from './pages/UserPage';
 import { Layout } from './components/Layout';
 import { SignUpPage } from './pages/SignUpPage';
 import { SignInPage } from './pages/SignInPage';
-import { trpc } from './utils/trpc';
 import { SignOutPage } from './pages/SignOutPage';
+import { useMe } from './lib/ctx';
 
 export function App() {
-  const { data, isError, isFetching, isLoading } = trpc.getMe.useQuery();
+  const me = useMe()
   return (
       <BrowserRouter>
         <Routes>
-          {isLoading || isFetching || isError ? null : data.me ? (
+          {me ? (
             <>
             <Route path={routes.getSignOutRoute()} element={<SignOutPage/>}/>
-            <Route element={<Layout us={data.me}/>}>
+            <Route element={<Layout />}>
               <Route path={routes.getAllUsersRoute()} element={<AllUsersPage />} />
               <Route path={routes.getViewUserRoute(routes.viewUserRouteParams)} element={<UserPage />} />
               <Route path="*" element={<Navigate to={routes.getAllUsersRoute()} replace />} />

@@ -1,3 +1,4 @@
+import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { trpc } from "../lib/trpc";
 // @index('./**/index.ts', f => `import { ${f.path.split('/').slice(0, -1).pop()}TrpcRoute } from '${f.path.split('/').slice(0, -1).join('/')}'`)
 import { getMeTrpcRoute } from './getMe'
@@ -22,3 +23,5 @@ export const trpcRouter = trpc.router({
 })
 
 export type TrpcRouter = typeof trpcRouter;
+export type TrpcRouterInput = inferRouterInputs<TrpcRouter>
+export type TrpcRouterOutput = inferRouterOutputs<TrpcRouter>

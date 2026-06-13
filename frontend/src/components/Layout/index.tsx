@@ -1,16 +1,15 @@
 import { Link, Outlet } from "react-router-dom";
 import { getAllUsersRoute, getSignOutRoute } from "../../lib/routes";
 import css from "./index.module.scss";
+import { useMe } from "../../lib/ctx";
 
-type props = {
-  us: {
-    id: string,
-    nick: string,
-    firstname: string
+
+
+export function Layout() {
+  const me = useMe()
+  if (!me) {
+    return <div>Only authorized!</div>
   }
-}
-
-export function Layout({us}: props) {
   return (
     <div className={css.layout}>
       <nav className={css.nav}>
@@ -19,7 +18,7 @@ export function Layout({us}: props) {
           <Link to={getAllUsersRoute()}>Пользователи</Link>
         </div>
         <div className={css.out}>
-          <p>Здравствуйте, {us.firstname}</p>
+          <p>Здравствуйте, {me.firstname}</p>
           <Link to={getSignOutRoute()}>Выйти</Link>
         </div>
       </nav>
