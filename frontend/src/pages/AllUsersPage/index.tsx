@@ -2,12 +2,13 @@ import { Link } from "react-router-dom";
 import { getViewUserRoute } from "../../lib/routes";
 import { trpc } from "../../utils/trpc";
 import css from "./index.module.scss";
+import { Loader } from "../../components/Loader";
 
 export function AllUsersPage() {
   const { data, isError, isLoading, isFetching, error } =
     trpc.getUsers.useQuery();
   if (isLoading || isFetching) {
-    return <div className={css.loading}>Loading...</div>;
+    return <Loader type='page' />;
   }
   if (isError) {
     return <div className={css.error}>Error: {error.message}</div>;

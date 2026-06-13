@@ -1,6 +1,7 @@
 import type { TrpcRouterOutput } from '@authwithback/backend/src/router';
 import { createContext, useContext } from 'react';
 import { trpc } from '../utils/trpc';
+import { Loader } from '../components/Loader';
 
 export type AppContext = {
   me: TrpcRouterOutput['getMe']['me'];
@@ -21,7 +22,7 @@ export const AppContextProvider = ({ children }: props) => {
         me: data?.me || null,
       }}
     >
-      {isLoading || isFetching ? <div>Loading...</div> : isError ? <div>Ошибка: {error.message}</div> : children}
+      {isLoading || isFetching ? <Loader type='page' /> : isError ? <div>Ошибка: {error.message}</div> : children}
     </AppReactContext.Provider>
   );
 };

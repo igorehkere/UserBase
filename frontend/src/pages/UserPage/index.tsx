@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { trpc } from "../../utils/trpc";
 import type { ViewUserRouteParams } from "../../lib/routes";
 import css from "./index.module.scss";
+import { Loader } from "../../components/Loader";
 
 export function UserPage() {
   const { userName } = useParams() as ViewUserRouteParams;
@@ -9,7 +10,7 @@ export function UserPage() {
     { userName },
   );
   if (isLoading || isFetching) {
-    return <div className={css.loading}>Loading...</div>;
+    return <Loader type="page" />;
   }
   if (isError) {
     return <div className={css.error}>Error: {error.message}</div>;
