@@ -1,9 +1,6 @@
-import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { trpc } from '../../utils/trpc';
-import { useFormik } from 'formik';
 import { zSignUpTrpcInput } from '@authwithback/backend/src/router/signUp/input';
 import z from 'zod';
-import { useState } from 'react';
 import { Input } from '../../components/Input';
 import { FormItems } from '../../components/FormItems';
 import { Button } from '../../components/Button';
@@ -12,21 +9,14 @@ import css from './index.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAllUsersRoute, getSignInRoute } from '../../lib/routes';
 import Cookies from 'js-cookie';
+import { useForm } from '../../lib/form';
 
 export function SignUpPage() {
-  type FormValues = {
-    nick: string;
-    firstname: string;
-    lastname: string;
-    password: string;
-    againpassword: string;
-  };
   const navigate = useNavigate()
   const signUp = trpc.signUp.useMutation();
-  const [submittingError, setSubmittingError] = useState<null | string>(null);
   const trpcUtils = trpc.useContext()
 
-  const formik = useFormik<FormValues>({
+  const {formik, alertProps, buttonProps} = useForm({
     initialValues: {
       nick: '',
       firstname: '',
@@ -34,8 +24,7 @@ export function SignUpPage() {
       password: '',
       againpassword: '',
     },
-    validationSchema: toFormikValidationSchema(
-      zSignUpTrpcInput.extend({ againpassword: z.string('Пожалуйста повторите пароль') }).superRefine((val, ctx) => {
+    validationSchema: zSignUpTrpcInput.extend({ againpassword: z.string('Пожалуйста повторите пароль') }).superRefine((val, ctx) => {
         if (val.password !== val.againpassword) {
           ctx.addIssue({
             code: 'custom',
@@ -43,19 +32,15 @@ export function SignUpPage() {
             path: ['againpassword'],
           });
         }
-      })
-    ),
+      }),
     onSubmit: async (values) => {
-      try {
-        setSubmittingError(null);
         const {token} = await signUp.mutateAsync(values);
-        Cookies.set('token', token, {expires: 99999})
+        Cookies.set('token', token, {expires: 1})
         navigate(getAllUsersRoute())
         trpcUtils.invalidate()
-      } catch (e: any) {
-        setSubmittingError(e.message);
-      }
     },
+    showValidationAlert: true,
+    resetOnSuccess: false
   });
   return (
     <div className={css.segmentform}>
@@ -72,11 +57,10 @@ export function SignUpPage() {
           <Input name="lastname" label="Фамилия" formik={formik} />
           <Input name="password" label="Пароль" type="password" formik={formik} />
           <Input name="againpassword" label="Повтор пароля" type="password" formik={formik} />
-          {!formik.isValid && !!formik.submitCount && <Alert color="red">Неизвестная ошибка</Alert>}
-          {!!submittingError && <Alert color="red">{submittingError}</Alert>}
+          <Alert {...alertProps}/>
           <div className={css.but}>
             <Link to={getSignInRoute()}><p>Есть аккаунт</p></Link>
-            <Button loading={formik.isSubmitting}>Зарегистрироваться</Button>
+            <Button {...buttonProps}>Зарегистрироваться</Button>
           </div>
           
         </FormItems>
