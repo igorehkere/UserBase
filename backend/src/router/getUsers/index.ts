@@ -1,14 +1,27 @@
 import { trpc } from "../../lib/trpc";
+import { zGetUsersTrpcInput } from "./input";
 
 
-export const getUsersTrpcRoute = trpc.procedure.query(async ({ctx}) => {
+export const getUsersTrpcRoute = trpc.procedure.input(zGetUsersTrpcInput).query(async ({ctx, input}) => {
   const users = await ctx.prisma.user.findMany({
     select: {
       id: true,
       nick: true,
       firstname: true,
       lastname: true,
-    }
+      serialNumber: true
+    },
+    cursor: input.cursor ? {serialNumber: input.cursor} : undefined,
+    take: input.limit + 1,
+    orderBy: [{
+      createdAt: 'desc'
+    }, {
+      serialNumber: 'desc'
+    }]
   })
-  return {users}
+
+  const nextUser = users.at(input.limit)
+  const nextCursor = nextUser?.serialNumber
+  const usersExceptNext = users.splice(0, input.limit)
+  return {users: usersExceptNext, nextCursor}
 })

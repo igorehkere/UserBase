@@ -8,10 +8,11 @@ datasource db {
 }
 
 model User {
-    id        String   @id @default(uuid())
-    nick      String   @unique
-    firstname String
-    lastname  String
-    password  String
-    createdAt DateTime @default(now())
+    id           String   @id @default(uuid())
+    serialNumber Int      @unique @default(autoincrement())
+    nick         String   @unique
+    firstname    String
+    lastname     String
+    password     String
+    createdAt    DateTime @default(now())
 }
