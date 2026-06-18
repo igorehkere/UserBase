@@ -2,8 +2,10 @@ import { Link, Outlet } from "react-router-dom";
 import { getAllUsersRoute, getSignOutRoute } from "../../lib/routes";
 import css from "./index.module.scss";
 import { useMe } from "../../lib/ctx";
+import { createRef } from "react";
 
 
+export const layoutContentElRef = createRef<HTMLDivElement>()
 
 export function Layout() {
   const me = useMe()
@@ -22,7 +24,7 @@ export function Layout() {
           <Link to={getSignOutRoute()}>Выйти</Link>
         </div>
       </nav>
-      <div className={css.content}>
+      <div className={css.content} ref={layoutContentElRef}>
         <Outlet />
       </div>
     </div>
