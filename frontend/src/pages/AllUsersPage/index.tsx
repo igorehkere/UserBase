@@ -4,7 +4,7 @@ import { trpc } from '../../utils/trpc';
 import css from './index.module.scss';
 import { Loader } from '../../components/Loader';
 import InfiniteScroll from 'react-infinite-scroller';
-import { layoutContentElRef } from '../../components/Layout';
+import { Helmet } from 'react-helmet-async';
 
 export function AllUsersPage() {
   const { data, isError, isLoading, error, hasNextPage, fetchNextPage, isFetchingNextPage, isRefetching } =
@@ -20,6 +20,10 @@ export function AllUsersPage() {
     );
 
   return (
+    <>
+    <Helmet>
+      <title>UserBase</title>
+    </Helmet>
     <div className={css.container}>
       {isLoading || isRefetching ? (
         <Loader type="page" />
@@ -56,5 +60,6 @@ export function AllUsersPage() {
         </>
       )}
     </div>
+    </>
   );
 }

@@ -8,20 +8,22 @@ import { SignUpPage } from './pages/SignUpPage';
 import { SignInPage } from './pages/SignInPage';
 import { SignOutPage } from './pages/SignOutPage';
 import { useMe } from './lib/ctx';
+import { HelmetProvider } from 'react-helmet-async';
 
 export function App() {
-  const me = useMe()
+  const me = useMe();
   return (
+    <HelmetProvider>
       <BrowserRouter>
         <Routes>
           {me ? (
             <>
-            <Route path={routes.getSignOutRoute()} element={<SignOutPage/>}/>
-            <Route element={<Layout />}>
-              <Route path={routes.getAllUsersRoute()} element={<AllUsersPage />} />
-              <Route path={routes.getViewUserRoute(routes.viewUserRouteParams)} element={<UserPage />} />
-              <Route path="*" element={<Navigate to={routes.getAllUsersRoute()} replace />} />
-            </Route>
+              <Route path={routes.getSignOutRoute()} element={<SignOutPage />} />
+              <Route element={<Layout />}>
+                <Route path={routes.getAllUsersRoute()} element={<AllUsersPage />} />
+                <Route path={routes.getViewUserRoute(routes.viewUserRouteParams)} element={<UserPage />} />
+                <Route path="*" element={<Navigate to={routes.getAllUsersRoute()} replace />} />
+              </Route>
             </>
           ) : (
             <>
@@ -32,5 +34,6 @@ export function App() {
           )}
         </Routes>
       </BrowserRouter>
+    </HelmetProvider>
   );
 }

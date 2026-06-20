@@ -10,13 +10,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getAllUsersRoute, getSignInRoute } from '../../lib/routes';
 import Cookies from 'js-cookie';
 import { useForm } from '../../lib/form';
+import { Helmet } from 'react-helmet-async';
 
 export function SignUpPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const signUp = trpc.signUp.useMutation();
-  const trpcUtils = trpc.useContext()
+  const trpcUtils = trpc.useContext();
 
-  const {formik, alertProps, buttonProps} = useForm({
+  const { formik, alertProps, buttonProps } = useForm({
     initialValues: {
       nick: '',
       firstname: '',
@@ -24,7 +25,9 @@ export function SignUpPage() {
       password: '',
       againpassword: '',
     },
-    validationSchema: zSignUpTrpcInput.extend({ againpassword: z.string('Пожалуйста повторите пароль') }).superRefine((val, ctx) => {
+    validationSchema: zSignUpTrpcInput
+      .extend({ againpassword: z.string('Пожалуйста повторите пароль') })
+      .superRefine((val, ctx) => {
         if (val.password !== val.againpassword) {
           ctx.addIssue({
             code: 'custom',
@@ -34,37 +37,43 @@ export function SignUpPage() {
         }
       }),
     onSubmit: async (values) => {
-        const {token} = await signUp.mutateAsync(values);
-        Cookies.set('token', token, {expires: 1})
-        navigate(getAllUsersRoute())
-        trpcUtils.invalidate()
+      const { token } = await signUp.mutateAsync(values);
+      Cookies.set('token', token, { expires: 1 });
+      navigate(getAllUsersRoute());
+      trpcUtils.invalidate();
     },
     showValidationAlert: true,
-    resetOnSuccess: false
+    resetOnSuccess: false,
   });
   return (
-    <div className={css.segmentform}>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          formik.handleSubmit();
-        }}
-        className={css.form}
-      >
-        <FormItems>
-          <Input name="nick" label="Ник" formik={formik} />
-          <Input name="firstname" label="Имя" formik={formik} />
-          <Input name="lastname" label="Фамилия" formik={formik} />
-          <Input name="password" label="Пароль" type="password" formik={formik} />
-          <Input name="againpassword" label="Повтор пароля" type="password" formik={formik} />
-          <Alert {...alertProps}/>
-          <div className={css.but}>
-            <Link to={getSignInRoute()}><p>Есть аккаунт</p></Link>
-            <Button {...buttonProps}>Зарегистрироваться</Button>
-          </div>
-          
-        </FormItems>
-      </form>
-    </div>
+    <>
+      <Helmet>
+        <title>Sign up</title>
+      </Helmet>
+      <div className={css.segmentform}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            formik.handleSubmit();
+          }}
+          className={css.form}
+        >
+          <FormItems>
+            <Input name="nick" label="Ник" formik={formik} />
+            <Input name="firstname" label="Имя" formik={formik} />
+            <Input name="lastname" label="Фамилия" formik={formik} />
+            <Input name="password" label="Пароль" type="password" formik={formik} />
+            <Input name="againpassword" label="Повтор пароля" type="password" formik={formik} />
+            <Alert {...alertProps} />
+            <div className={css.but}>
+              <Link to={getSignInRoute()}>
+                <p>Есть аккаунт</p>
+              </Link>
+              <Button {...buttonProps}>Зарегистрироваться</Button>
+            </div>
+          </FormItems>
+        </form>
+      </div>
+    </>
   );
 }
