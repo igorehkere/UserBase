@@ -3,6 +3,8 @@ import { zGetUsersTrpcInput } from "./input";
 
 
 export const getUsersTrpcRoute = trpc.procedure.input(zGetUsersTrpcInput).query(async ({ctx, input}) => {
+
+  const noramalizedSearch = input.search ? input.search.trim().replace(/[\s\n\t]/g, '_') : undefined
   const users = await ctx.prisma.user.findMany({
     select: {
       id: true,
@@ -10,6 +12,21 @@ export const getUsersTrpcRoute = trpc.procedure.input(zGetUsersTrpcInput).query(
       firstname: true,
       lastname: true,
       serialNumber: true
+    },
+    where: !input.search ? undefined : {
+      OR: [{
+        nick: {
+          search: noramalizedSearch
+        }
+      }, {
+        firstname: {
+          search: noramalizedSearch
+        }
+      }, {
+        lastname: {
+          search: noramalizedSearch
+        }
+      }]
     },
     cursor: input.cursor ? {serialNumber: input.cursor} : undefined,
     take: input.limit + 1,
