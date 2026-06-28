@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { getAllUsersRoute, getSignOutRoute } from "../../lib/routes";
+import { getAllPostsRoute, getSignOutRoute } from "../../lib/routes";
 import css from "./index.module.scss";
 import { useMe } from "../../lib/ctx";
 import { createRef } from "react";
@@ -17,7 +17,7 @@ export function Layout() {
       <nav className={css.nav}>
         <h1>UserBase</h1>
         <div className={css.btns}>
-          <Link to={getAllUsersRoute()}>Пользователи</Link>
+          <Link to={getAllPostsRoute()}>Посты</Link>
         </div>
         <div className={css.out}>
           <p>Здравствуйте, {me.firstname}</p>

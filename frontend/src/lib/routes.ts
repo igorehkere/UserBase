@@ -2,7 +2,7 @@ const getRouteParams = <T extends Record<string, boolean>>(object: T) => {
     return Object.keys(object).reduce((acc, key) => ({ ...acc, [key]: `:${key}` }), {}) as Record<keyof T, string>
 }
 
-export const getAllUsersRoute = () => '/';
+export const getAllPostsRoute = () => '/';
 export const viewUserRouteParams = getRouteParams({ userName: true })
 export type ViewUserRouteParams = typeof viewUserRouteParams;
 export const getViewUserRoute = ({userName}: ViewUserRouteParams) => `/users/${userName}`

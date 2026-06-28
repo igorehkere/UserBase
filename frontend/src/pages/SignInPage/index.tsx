@@ -6,7 +6,7 @@ import { Button } from '../../components/Button';
 import css from './index.module.scss';
 import { Alert } from '../../components/Alert';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAllUsersRoute, getSignUpRoute } from '../../lib/routes';
+import { getAllPostsRoute, getSignUpRoute } from '../../lib/routes';
 import Cookies from 'js-cookie';
 import { useForm } from '../../lib/form';
 import { Helmet } from 'react-helmet-async';
@@ -25,7 +25,7 @@ export function SignInPage() {
     onSubmit: async (values) => {
       const { token } = await signIn.mutateAsync(values);
       Cookies.set('token', token, { expires: 1 });
-      navigate(getAllUsersRoute());
+      navigate(getAllPostsRoute());
       void trpcUtils.invalidate();
     },
     resetOnSuccess: false,

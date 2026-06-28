@@ -7,7 +7,7 @@ import { Button } from '../../components/Button';
 import { Alert } from '../../components/Alert';
 import css from './index.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAllUsersRoute, getSignInRoute } from '../../lib/routes';
+import { getAllPostsRoute, getSignInRoute } from '../../lib/routes';
 import Cookies from 'js-cookie';
 import { useForm } from '../../lib/form';
 import { Helmet } from 'react-helmet-async';
@@ -39,7 +39,7 @@ export function SignUpPage() {
     onSubmit: async (values) => {
       const { token } = await signUp.mutateAsync(values);
       Cookies.set('token', token, { expires: 1 });
-      navigate(getAllUsersRoute());
+      navigate(getAllPostsRoute());
       trpcUtils.invalidate();
     },
     showValidationAlert: true,
