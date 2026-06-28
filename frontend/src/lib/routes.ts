@@ -10,3 +10,4 @@ export const getViewUserRoute = ({userName}: ViewUserRouteParams) => `/users/${u
 export const getSignUpRoute = () => '/sign-up'
 export const getSignInRoute = () => '/sign-in'
 export const getSignOutRoute = () => '/sign-out'
+export const getMyProfileRoute = () => '/profile'

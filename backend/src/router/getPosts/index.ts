@@ -7,6 +7,7 @@ export const getPostsTrpcRoute = trpc.procedure.query(async ({ ctx }) => {
       text: true,
       createdAt: true,
       authorId: true,
+      author: true
     },
     orderBy: {
       createdAt: 'desc'

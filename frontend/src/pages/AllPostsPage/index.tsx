@@ -26,8 +26,9 @@ export function AllPostsPage() {
                   const date = getData(post.createdAt)
                   return (
                     <div className={css.card} key={post.id}>
+                        <span>{`${post.author.firstname} ${post.author.lastname}`}</span>
                         <p>{post.text}</p>
-                        <p>{date}</p>
+                        <span>{date}</span>
                     </div>
                   );
                 })}

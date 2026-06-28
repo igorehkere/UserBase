@@ -9,6 +9,7 @@ import { SignOutPage } from './pages/SignOutPage';
 import { useMe } from './lib/ctx';
 import { HelmetProvider } from 'react-helmet-async';
 import { AllPostsPage } from './pages/AllPostsPage';
+import { MyProfilePage } from './pages/MyProfilePage';
 
 export function App() {
   const me = useMe();
@@ -22,6 +23,7 @@ export function App() {
               <Route element={<Layout />}>
                 <Route path={routes.getAllPostsRoute()} element={<AllPostsPage />} />
                 <Route path={routes.getViewUserRoute(routes.viewUserRouteParams)} element={<UserPage />} />
+                <Route path={routes.getMyProfileRoute()} element={<MyProfilePage />} />
                 <Route path="*" element={<Navigate to={routes.getAllPostsRoute()} replace />} />
               </Route>
             </>
