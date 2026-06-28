@@ -6,8 +6,8 @@ import { getAllPostsRoute, getMyProfileRoute } from '../../lib/routes'
 export const Navigation = () => {
     return (
         <>
-            <ButtonNavigate><Link to={getMyProfileRoute()}>Мой профиль</Link></ButtonNavigate>
-            <ButtonNavigate><Link to={getAllPostsRoute()}>Посты</Link></ButtonNavigate>
+            <Link to={getMyProfileRoute()}><ButtonNavigate>Мой профиль</ButtonNavigate></Link>
+            <Link to={getAllPostsRoute()}><ButtonNavigate>Посты</ButtonNavigate></Link>
         </>
     )
 }
