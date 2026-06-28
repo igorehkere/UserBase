@@ -1,6 +1,7 @@
 import type { FormikProps } from 'formik'
 import cn from 'classnames'
 import css from './index.module.scss'
+import { useAutoResize } from '../../hooks/useAutoResize'
 
 type props = {
   name: string
@@ -14,11 +15,13 @@ export function TextArea({ name, label, formik }: props) {
   const touched = formik.touched[name]
   const disabled = formik.isSubmitting
   const invalid = !!error && !!touched
+  const textareaRef = useAutoResize<HTMLTextAreaElement>(formik.values[name])
 
   return (
     <div className={cn({ [css.field]: true, [css.disabled]: disabled })}>
       <label className={css.label} htmlFor={name}>{label}</label>
       <textarea
+        ref={textareaRef}
         className={cn({ [css.input]: true, [css.invalid]: invalid })}
         disabled={formik.isSubmitting}
         onChange={(e) => {

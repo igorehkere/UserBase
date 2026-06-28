@@ -2,9 +2,12 @@
 
 .field {
     .input {
-        min-height: 150px;
+        min-height: 50px;
+        height:auto;
         width: 100%;
         max-width: none;
-        resize: vertical;
+        resize: none;
+        overflow: hidden;
+        transition: height 0.1s ease;
     }
 }
