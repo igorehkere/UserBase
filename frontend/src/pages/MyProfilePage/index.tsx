@@ -2,6 +2,7 @@ import css from './index.module.scss';
 import { Loader } from '../../components/Loader';
 import { Helmet } from 'react-helmet-async';
 import { useMe } from '../../lib/ctx';
+import { getData } from '../../utils/getData';
 
 export function MyProfilePage() {
     const me = useMe()
@@ -16,10 +17,19 @@ export function MyProfilePage() {
             <>
                 <h1>Профиль</h1>
                 <div className={css.card}>
-                    <p>{me.firstname}</p>
-                    <p>{me.lastname}</p>
-                    <p>{me.nick}</p>
+                    <p>{`ФИО - ${me.firstname} ${me.lastname}`}</p>
+                    <p>Ник - {me.nick}</p>
                 </div>
+                <h1>Ваши посты</h1>
+                {me.posts.map((post) => {
+                  const date = getData(post.createdAt)
+                  return (
+                    <div className={css.card} key={post.id}>
+                        <p>{post.text}</p>
+                        <span>{date}</span>
+                    </div>
+                  );
+                })}
             </>
             )}
       </div>

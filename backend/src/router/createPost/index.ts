@@ -6,11 +6,11 @@ export const createPostTrpcRoute = trpc.procedure.input(zCreatePostTrpcInput).mu
     throw new Error('Для создания поста нужно авторизоваться');
   }
 
-  await ctx.prisma.post.create({
+  const post = await ctx.prisma.post.create({
     data: {
       ...input,
       authorId: ctx.me.id,
     },
   });
-  return true;
+  return post;
 });

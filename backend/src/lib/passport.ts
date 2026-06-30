@@ -38,8 +38,8 @@ export const applyPassportToExpressApp = (expressApp: Express, ctx: AppContext) 
       return;
     }
     passport.authenticate('jwt', { session: false }, (...arg: any[]) => {
-      req.user = arg[1] || undefined
-      next()
+      req.user = arg[1] || undefined;
+      next();
     })(req, res, next);
   });
 };
