@@ -7,6 +7,11 @@ export type ButtonProps = {
   loading?: boolean
 }
 
+type ButtonChange = {
+    children: React.ReactNode
+    onClick?: () => void
+}
+
 export function Button({ children, loading = false }: ButtonProps) {
     return (
         <button className={cn({[css.button]: true, [css.disabled]: loading, [css.loading]: loading})} type='submit' disabled={loading}>
@@ -18,5 +23,13 @@ export function Button({ children, loading = false }: ButtonProps) {
 export function ButtonNavigate({children}: {children: React.ReactNode}) {
     return (
         <button className={css.buttonNavi}>{children}</button>
+    )
+}
+
+export function ButtonChange({ children, onClick }: ButtonChange) {
+    return (
+        <button className={cn({[css.button]: true})} type='submit' onClick={onClick}>
+            <span className={css.text}>{children}</span>
+        </button>
     )
 }

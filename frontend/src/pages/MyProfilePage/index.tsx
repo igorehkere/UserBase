@@ -3,9 +3,18 @@ import { Loader } from '../../components/Loader';
 import { Helmet } from 'react-helmet-async';
 import { useMe } from '../../lib/ctx';
 import { getData } from '../../utils/getData';
+import { Button, ButtonChange } from '../../components/Button';
+import { useState } from 'react';
+import { EditPostPage } from '../EditPostPage';
 
 export function MyProfilePage() {
-    const me = useMe()
+  const me = useMe();
+  const [showModalWindow, setShowModalWindow] = useState<null | { postId: string }>(null);
+
+  function getPostId(postId: string) {
+    setShowModalWindow({postId});
+  }
+  console.log(showModalWindow)
   return (
     <>
       <Helmet>
@@ -13,25 +22,33 @@ export function MyProfilePage() {
       </Helmet>
 
       <div className={css.container}>
-            {!me ? <Loader type='page'/> : (
-            <>
-                <h1>Профиль</h1>
-                <div className={css.card}>
-                    <p>{`ФИО - ${me.firstname} ${me.lastname}`}</p>
-                    <p>Ник - {me.nick}</p>
+        {!me ? (
+          <Loader type="page" />
+        ) : (
+          <>
+            {showModalWindow ? <EditPostPage/> : null}
+            <h1>Профиль</h1>
+            <div className={css.card}>
+              <p>{`ФИО - ${me.firstname} ${me.lastname}`}</p>
+              <p>Ник - {me.nick}</p>
+            </div>
+            <h1>Ваши посты</h1>
+            {me.posts.map((post) => {
+              const date = getData(post.createdAt);
+              return (
+                <div className={css.card} key={post.id}>
+                  <p>{post.text}</p>
+                  <div className={css.panel}>
+                    <ButtonChange onClick={() => {
+                      getPostId(post.id)
+                    }}>Изменить</ButtonChange>
+                    <span>{date}</span>
+                  </div>
                 </div>
-                <h1>Ваши посты</h1>
-                {me.posts.map((post) => {
-                  const date = getData(post.createdAt)
-                  return (
-                    <div className={css.card} key={post.id}>
-                        <p>{post.text}</p>
-                        <span>{date}</span>
-                    </div>
-                  );
-                })}
-            </>
-            )}
+              );
+            })}
+          </>
+        )}
       </div>
     </>
   );

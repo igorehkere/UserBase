@@ -47,4 +47,9 @@
       color: rgb(87, 87, 87);
     }
   }
+  .panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
