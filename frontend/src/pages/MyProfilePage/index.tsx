@@ -3,7 +3,7 @@ import { Loader } from '../../components/Loader';
 import { Helmet } from 'react-helmet-async';
 import { useMe } from '../../lib/ctx';
 import { getData } from '../../utils/getData';
-import { Button, ButtonChange } from '../../components/Button';
+import { ButtonChange } from '../../components/Button';
 import { useState } from 'react';
 import { EditPostPage } from '../EditPostPage';
 
