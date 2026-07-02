@@ -1,3 +1,46 @@
-.testPanel {
-    position: fixed;
+.container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.452);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .panel {
+    padding: 20px;
+    background-color: white;
+    height: 500px;
+    width: 1000px;
+    border-radius: 15px;
+
+    .close {
+      position: relative;
+      left: 920px;
+      width: 32px;
+      height: 32px;
+      opacity: 0.3;
+    }
+    .close:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+    .close:before,
+    .close:after {
+      position: absolute;
+      left: 15px;
+      content: ' ';
+      height: 33px;
+      width: 2px;
+      background-color: #333;
+    }
+    .close:before {
+      transform: rotate(45deg);
+    }
+    .close:after {
+      transform: rotate(-45deg);
+    }
+  }
 }

@@ -11,7 +11,7 @@
     cursor: pointer;
     user-select: none;
     position: relative;
-
+    z-index: 2;
     &:hover {
         background-color: #21b821;
     }

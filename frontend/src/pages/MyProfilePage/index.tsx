@@ -9,10 +9,10 @@ import { EditPostPage } from '../EditPostPage';
 
 export function MyProfilePage() {
   const me = useMe();
-  const [showModalWindow, setShowModalWindow] = useState<null | { postId: string }>(null);
+  const [showModalWindow, setShowModalWindow] = useState<null | string>(null);
 
-  function getPostId(postId: string) {
-    setShowModalWindow({postId});
+  function getPostId(postId: string | null) {
+    setShowModalWindow(postId);
   }
   console.log(showModalWindow)
   return (
@@ -26,7 +26,7 @@ export function MyProfilePage() {
           <Loader type="page" />
         ) : (
           <>
-            {showModalWindow ? <EditPostPage/> : null}
+            {showModalWindow ? <EditPostPage postId={showModalWindow} getPostId={getPostId}/> : null}
             <h1>Профиль</h1>
             <div className={css.card}>
               <p>{`ФИО - ${me.firstname} ${me.lastname}`}</p>
