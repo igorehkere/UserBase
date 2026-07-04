@@ -6,6 +6,7 @@ import { getData } from '../../utils/getData';
 import { ButtonChange } from '../../components/Button';
 import { useState } from 'react';
 import { EditPostPage } from '../EditPostPage';
+import { AnimatePresence } from "framer-motion";
 
 export function MyProfilePage() {
   const me = useMe();
@@ -26,7 +27,9 @@ export function MyProfilePage() {
           <Loader type="page" />
         ) : (
           <>
-            {showModalWindow ? <EditPostPage postId={showModalWindow} getPostId={getPostId}/> : null}
+            <AnimatePresence>
+              {showModalWindow ? <EditPostPage postId={showModalWindow} getPostId={getPostId}/> : null}
+            </AnimatePresence>
             <h1>Профиль</h1>
             <div className={css.card}>
               <p>{`ФИО - ${me.firstname} ${me.lastname}`}</p>
