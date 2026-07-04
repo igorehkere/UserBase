@@ -5,15 +5,16 @@ import { useMe } from '../../lib/ctx';
 import { getData } from '../../utils/getData';
 import { ButtonChange } from '../../components/Button';
 import { useState } from 'react';
-import { EditPostPage } from '../EditPostPage';
+import { EditPostContent } from '../EditPostPage';
 import { AnimatePresence } from "framer-motion";
+import type { TrpcRouterOutput } from '@authwithback/backend/src/router';
 
 export function MyProfilePage() {
   const me = useMe();
-  const [showModalWindow, setShowModalWindow] = useState<null | string>(null);
+  const [showModalWindow, setShowModalWindow] = useState<null | NonNullable<TrpcRouterOutput['getPost']['post']>>(null);
 
-  function getPostId(postId: string | null) {
-    setShowModalWindow(postId);
+  function getPostForModal(post: NonNullable<TrpcRouterOutput['getPost']['post']> | null) {
+    setShowModalWindow(post)
   }
   console.log(showModalWindow)
   return (
@@ -28,7 +29,7 @@ export function MyProfilePage() {
         ) : (
           <>
             <AnimatePresence>
-              {showModalWindow ? <EditPostPage postId={showModalWindow} getPostId={getPostId}/> : null}
+              {showModalWindow ? <EditPostContent getPostForModal={getPostForModal} post={showModalWindow}/> : null}
             </AnimatePresence>
             <h1>Профиль</h1>
             <div className={css.card}>
@@ -43,7 +44,7 @@ export function MyProfilePage() {
                   <p>{post.text}</p>
                   <div className={css.panel}>
                     <ButtonChange onClick={() => {
-                      getPostId(post.id)
+                      getPostForModal(post)
                     }}>Изменить</ButtonChange>
                     <span>{date}</span>
                   </div>
