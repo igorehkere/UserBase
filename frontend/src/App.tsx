@@ -1,15 +1,15 @@
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import * as routes from './lib/routes';
 import './styles/global.scss';
-import { UserPage } from './pages/UserPage';
+import { UserPage } from './pages/users/UserPage';
 import { Layout } from './components/Layout';
-import { SignUpPage } from './pages/SignUpPage';
-import { SignInPage } from './pages/SignInPage';
-import { SignOutPage } from './pages/SignOutPage';
+import { SignUpPage } from './pages/users/SignUpPage';
+import { SignInPage } from './pages/users/SignInPage';
+import { SignOutPage } from './pages/users/SignOutPage';
 import { useMe } from './lib/ctx';
 import { HelmetProvider } from 'react-helmet-async';
-import { AllPostsPage } from './pages/AllPostsPage';
-import { MyProfilePage } from './pages/MyProfilePage';
+import { AllPostsPage } from './pages/posts/AllPostsPage';
+import { MyProfilePage } from './pages/users/MyProfilePage';
 
 export function App() {
   const me = useMe();

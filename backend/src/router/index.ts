@@ -1,16 +1,16 @@
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { trpc } from "../lib/trpc";
 // @index('./**/index.ts', f => `import { ${f.path.split('/').slice(0, -1).pop()}TrpcRoute } from '${f.path.split('/').slice(0, -1).join('/')}'`)
-import { createPostTrpcRoute } from './createPost'
-import { getMeTrpcRoute } from './getMe'
-import { getPostTrpcRoute } from './getPost'
-import { getPostsTrpcRoute } from './getPosts'
-import { getUserTrpcRoute } from './getUser'
-import { getUsersTrpcRoute } from './getUsers'
-import { setPostLikeTrpcRoute } from './setPostLike'
-import { SignInTrpcRoute } from './SignIn'
-import { signUpTrpcRoute } from './signUp'
-import { updatePostTrpcRoute } from './updatePost'
+import { createPostTrpcRoute } from './posts/createPost'
+import { getPostTrpcRoute } from './posts/getPost'
+import { getPostsTrpcRoute } from './posts/getPosts'
+import { setPostLikeTrpcRoute } from './posts/setPostLike'
+import { updatePostTrpcRoute } from './posts/updatePost'
+import { getMeTrpcRoute } from './users/getMe'
+import { getUserTrpcRoute } from './users/getUser'
+import { getUsersTrpcRoute } from './users/getUsers'
+import { SignInTrpcRoute } from './users/SignIn'
+import { signUpTrpcRoute } from './users/signUp'
 // @endindex
 
 
@@ -19,15 +19,15 @@ import { updatePostTrpcRoute } from './updatePost'
 export const trpcRouter = trpc.router({
     // @index('./**/index.ts', f => `${f.path.split('/').slice(0, -1).pop()}: ${f.path.split('/').slice(0, -1).pop()}TrpcRoute,`)
     createPost: createPostTrpcRoute,
-    getMe: getMeTrpcRoute,
     getPost: getPostTrpcRoute,
     getPosts: getPostsTrpcRoute,
+    setPostLike: setPostLikeTrpcRoute,
+    updatePost: updatePostTrpcRoute,
+    getMe: getMeTrpcRoute,
     getUser: getUserTrpcRoute,
     getUsers: getUsersTrpcRoute,
-    setPostLike: setPostLikeTrpcRoute,
     SignIn: SignInTrpcRoute,
     signUp: signUpTrpcRoute,
-    updatePost: updatePostTrpcRoute,
     // @endindex
 
 })
