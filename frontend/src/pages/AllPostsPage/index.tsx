@@ -4,9 +4,12 @@ import { Loader } from '../../components/Loader';
 import { Helmet } from 'react-helmet-async';
 import { CreatePost } from '../../components/CreatePost';
 import { getData } from '../../utils/getData';
+import { useMe } from '../../lib/ctx';
+import { LikeButton } from '../../components/LikeButton';
 
 export function AllPostsPage() {
-  const { data, isError, isLoading, error, isFetching } = trpc.getPosts.useQuery();
+  const { data, isError, isLoading, error } = trpc.getPosts.useQuery();
+  const me = useMe()
   return (
     <>
       <Helmet>
@@ -14,7 +17,7 @@ export function AllPostsPage() {
       </Helmet>
 
       <div className={css.container}>
-        {isLoading || isFetching ? (
+        {isLoading ? (
           <Loader type="page" />
         ) : isError ? (
           <div className={css.error}>Error: {error.message}</div>
@@ -28,7 +31,14 @@ export function AllPostsPage() {
                     <div className={css.card} key={post.id}>
                         <span>{`${post.author.firstname} ${post.author.lastname}`}</span>
                         <p>{post.text}</p>
-                        <span>{date}</span>
+                        <div className={css.panelInfo}>
+                          {me && (
+                            <LikeButton post={post}/>
+                          )}
+                          <p>{post.likesCount}</p>
+                          
+                          <span>{date}</span>
+                        </div>  
                     </div>
                   );
                 })}

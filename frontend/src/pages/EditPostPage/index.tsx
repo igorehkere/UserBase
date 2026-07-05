@@ -1,4 +1,3 @@
-import type { TrpcRouterOutput } from '@authwithback/backend/src/router';
 import { useForm } from '../../lib/form';
 import { trpc } from '../../utils/trpc';
 import css from './index.module.scss';
@@ -10,10 +9,11 @@ import { Alert } from '../../components/Alert';
 import { Button } from '../../components/Button';
 import { motion } from 'framer-motion';
 import { createPortal } from "react-dom";
+import type { useMe } from '../../lib/ctx';
 
 type editPostType = {
-  getPostForModal: (post: NonNullable<TrpcRouterOutput['getPost']['post']> | null) => void;
-  post: NonNullable<TrpcRouterOutput['getPost']['post']>;
+  getPostForModal: (post: NonNullable<ReturnType<typeof useMe>>['posts'][number] | null) => void;
+  post: NonNullable<ReturnType<typeof useMe>>['posts'][number];
 };
 
 export const EditPostContent = ({ getPostForModal, post }: editPostType) => {

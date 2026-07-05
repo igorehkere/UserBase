@@ -7,13 +7,12 @@ import { ButtonChange } from '../../components/Button';
 import { useState } from 'react';
 import { EditPostContent } from '../EditPostPage';
 import { AnimatePresence } from "framer-motion";
-import type { TrpcRouterOutput } from '@authwithback/backend/src/router';
 
 export function MyProfilePage() {
   const me = useMe();
-  const [showModalWindow, setShowModalWindow] = useState<null | NonNullable<TrpcRouterOutput['getPost']['post']>>(null);
+  const [showModalWindow, setShowModalWindow] = useState<null | NonNullable<ReturnType<typeof useMe>>['posts'][number]>(null);
 
-  function getPostForModal(post: NonNullable<TrpcRouterOutput['getPost']['post']> | null) {
+  function getPostForModal(post: NonNullable<ReturnType<typeof useMe>>['posts'][number] | null) {
     setShowModalWindow(post)
   }
   console.log(showModalWindow)
