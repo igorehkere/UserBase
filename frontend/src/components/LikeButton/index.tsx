@@ -1,6 +1,7 @@
 import type { TrpcRouterOutput } from '@authwithback/backend/src/router';
 import { trpc } from '../../utils/trpc';
 import css from './index.module.scss';
+import { Icon } from '../Icon';
 
 export const LikeButton = ({ post }: { post: NonNullable<TrpcRouterOutput['getPost']['post']> }) => {
   const trpcUtils = trpc.useContext();
@@ -36,7 +37,7 @@ export const LikeButton = ({ post }: { post: NonNullable<TrpcRouterOutput['getPo
         void setPostLike.mutateAsync({ postId: post.id, isLikedByMe: !post.isLikedByMe });
       }}
     >
-      {post.isLikedByMe ? 'Unlike' : 'Like'}
+      <Icon size={24} className={css.likeIcon} name={post.isLikedByMe ? 'likeFilled' : 'likeEmpty'} />
     </button>
   );
 };

@@ -13,7 +13,7 @@ export function AllPostsPage() {
   return (
     <>
       <Helmet>
-        <title>UserBase | Posts</title>
+        <title>UserBase | Посты</title>
       </Helmet>
 
       <div className={css.container}>
@@ -36,7 +36,6 @@ export function AllPostsPage() {
                             <LikeButton post={post}/>
                           )}
                           <p>{post.likesCount}</p>
-                          
                           <span>{date}</span>
                         </div>  
                     </div>
