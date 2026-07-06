@@ -1,0 +1,15 @@
+.container {
+  background: linear-gradient(to right, rgb(211, 137, 245), rgb(145, 210, 240));
+  width: 100%;
+  min-height: 1000px;
+  height: auto;
+  padding: 30px 0 30px 0;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  .image404 {
+    background-color: white;
+    border-radius: 20px;
+  }
+}

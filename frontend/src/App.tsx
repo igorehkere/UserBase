@@ -10,6 +10,7 @@ import { useMe } from './lib/ctx';
 import { HelmetProvider } from 'react-helmet-async';
 import { AllPostsPage } from './pages/posts/AllPostsPage';
 import { MyProfilePage } from './pages/users/MyProfilePage';
+import { NotFoundPage } from './pages/other/NotFoundPage';
 
 export function App() {
   const me = useMe();
@@ -24,7 +25,8 @@ export function App() {
                 <Route path={routes.getAllPostsRoute()} element={<AllPostsPage />} />
                 <Route path={routes.getViewUserRoute(routes.viewUserRouteParams)} element={<UserPage />} />
                 <Route path={routes.getMyProfileRoute()} element={<MyProfilePage />} />
-                <Route path="*" element={<Navigate to={routes.getAllPostsRoute()} replace />} />
+                <Route path={routes.notFoundRoute()} element={<NotFoundPage />} />
+                <Route path="*" element={<Navigate to={routes.notFoundRoute()} replace />} />
               </Route>
             </>
           ) : (
