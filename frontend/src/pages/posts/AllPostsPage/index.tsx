@@ -8,8 +8,18 @@ import { useMe } from '../../../lib/ctx';
 import { LikeButton } from '../../../components/LikeButton';
 
 export function AllPostsPage() {
-  const { data, isError, isLoading, error } = trpc.getPosts.useQuery();
-  const me = useMe()
+  const { data, isError, isLoading, error, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    trpc.getPosts.useInfiniteQuery(
+      {
+        limit: 2,
+      },
+      {
+        getNextPageParam: (lastPage) => {
+          return lastPage.nextCursor;
+        },
+      }
+    );
+  const me = useMe();
   return (
     <>
       <Helmet>
@@ -25,22 +35,34 @@ export function AllPostsPage() {
           <>
             <CreatePost />
             <h1>Посты</h1>
-              {data.posts.map((post) => {
-                  const date = getData(post.createdAt)
-                  return (
-                    <div className={css.card} key={post.id}>
-                        <span>{`${post.author.firstname} ${post.author.lastname}`}</span>
-                        <p>{post.text}</p>
-                        <div className={css.panelInfo}>
-                          {me && (
-                            <LikeButton post={post}/>
-                          )}
-                          <p>{post.likesCount}</p>
-                          <span>{date}</span>
-                        </div>  
+            {data.pages
+              .flatMap((page) => page.posts)
+              .map((post) => {
+                const date = getData(post.createdAt);
+                return (
+                  <div className={css.card} key={post.id}>
+                    <span>{`${post.author.firstname} ${post.author.lastname}`}</span>
+                    <p>{post.text}</p>
+                    <div className={css.panelInfo}>
+                      {me && <LikeButton post={post} />}
+                      <p>{post.likesCount}</p>
+                      <span>{date}</span>
                     </div>
-                  );
-                })}
+                  </div>
+                );
+              })}
+            <div>
+              {hasNextPage && !isFetchingNextPage && (
+                <button
+                  onClick={() => {
+                    void fetchNextPage();
+                  }}
+                >
+                  Дальше
+                </button>
+              )}
+              {isFetchingNextPage && <Loader type="section" />}
+            </div>
           </>
         )}
       </div>

@@ -7,20 +7,32 @@ export const LikeButton = ({ post }: { post: NonNullable<TrpcRouterOutput['getPo
   const trpcUtils = trpc.useContext();
   const setPostLike = trpc.setPostLike.useMutation({
     onMutate: async ({ isLikedByMe, postId }) => {
-      const oldPostsData = trpcUtils.getPosts.getData();
+      const oldPostsData = trpcUtils.getPosts.getInfiniteData({
+        limit: 2
+      });
 
       if (oldPostsData) {
-        trpcUtils.getPosts.setData(undefined, {
-          posts: oldPostsData.posts.map((p) =>
-            p.id === postId
-              ? {
-                  ...p,
-                  isLikedByMe,
-                  likesCount: p.likesCount + (isLikedByMe ? 1 : -1),
-                }
-              : p
-          ),
-        });
+        trpcUtils.getPosts.setInfiniteData(
+          { limit: 2 }, 
+          (oldData) => {
+            if (!oldData) return oldData;
+            return {
+              ...oldData,
+              pages: oldData.pages.map((page) => ({
+                ...page,
+                posts: page.posts.map((p) =>
+                  p.id === postId
+                    ? {
+                        ...p,
+                        isLikedByMe,
+                        likesCount: p.likesCount + (isLikedByMe ? 1 : -1),
+                      }
+                    : p
+                ),
+              })),
+            };
+          }
+        );
       }
       return { oldPostsData };
     },

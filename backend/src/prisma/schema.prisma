@@ -21,12 +21,13 @@ model User {
 }
 
 model Post {
-    id        String     @id @default(uuid())
-    text      String
-    createdAt DateTime   @default(now())
-    authorId  String
-    author    User       @relation(fields: [authorId], references: [id])
-    postLikes PostLike[]
+    id           String     @id @default(uuid())
+    text         String
+    createdAt    DateTime   @default(now())
+    authorId     String
+    author       User       @relation(fields: [authorId], references: [id])
+    postLikes    PostLike[]
+    serialNumber Int        @unique @default(autoincrement())
 }
 
 model PostLike {
