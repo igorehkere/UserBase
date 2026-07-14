@@ -8,6 +8,12 @@
   gap: 10px;
   flex-direction: column;
   align-items: center;
+  .scroller {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .filterForm {
     width: 50%;
   }

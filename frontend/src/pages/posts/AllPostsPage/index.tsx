@@ -6,6 +6,7 @@ import { CreatePost } from '../../../components/CreatePost';
 import { getData } from '../../../utils/getData';
 import { useMe } from '../../../lib/ctx';
 import { LikeButton } from '../../../components/LikeButton';
+import InfiniteScroll from 'react-infinite-scroller';
 
 export function AllPostsPage() {
   const { data, isError, isLoading, error, hasNextPage, fetchNextPage, isFetchingNextPage } =
@@ -35,6 +36,20 @@ export function AllPostsPage() {
           <>
             <CreatePost />
             <h1>Посты</h1>
+            <InfiniteScroll 
+              className={css.scroller}
+              threshold={250}
+              loadMore={() => {
+                if (!isFetchingNextPage && hasNextPage) {
+                  void fetchNextPage()
+                }
+              }}
+              hasMore={hasNextPage}
+              loader={
+                <Loader type='page'/>
+              }
+              useWindow={true}
+            >
             {data.pages
               .flatMap((page) => page.posts)
               .map((post) => {
@@ -51,18 +66,7 @@ export function AllPostsPage() {
                   </div>
                 );
               })}
-            <div>
-              {hasNextPage && !isFetchingNextPage && (
-                <button
-                  onClick={() => {
-                    void fetchNextPage();
-                  }}
-                >
-                  Дальше
-                </button>
-              )}
-              {isFetchingNextPage && <Loader type="section" />}
-            </div>
+            </InfiniteScroll>
           </>
         )}
       </div>
