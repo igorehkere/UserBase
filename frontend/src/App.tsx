@@ -11,6 +11,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { AllPostsPage } from './pages/posts/AllPostsPage';
 import { MyProfilePage } from './pages/users/MyProfilePage';
 import { NotFoundPage } from './pages/other/NotFoundPage';
+import { EditProfilePage } from './pages/users/EditProfilePage';
 
 export function App() {
   const me = useMe();
@@ -26,6 +27,7 @@ export function App() {
                 <Route path={routes.getViewUserRoute(routes.viewUserRouteParams)} element={<UserPage />} />
                 <Route path={routes.getMyProfileRoute()} element={<MyProfilePage />} />
                 <Route path={routes.notFoundRoute()} element={<NotFoundPage />} />
+                <Route path={routes.getEditMyProfile()} element={<EditProfilePage />} />
                 <Route path="*" element={<Navigate to={routes.notFoundRoute()} replace />} />
               </Route>
             </>

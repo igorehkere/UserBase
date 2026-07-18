@@ -8,6 +8,8 @@ import { useState } from 'react';
 import { EditPostContent } from '../../posts/EditPostPage';
 import { AnimatePresence } from "framer-motion";
 import { HiOutlinePencil } from "react-icons/hi";
+import { Link } from 'react-router-dom';
+import { getEditMyProfile } from '../../../lib/routes';
 
 export function MyProfilePage() {
   const me = useMe();
@@ -32,18 +34,21 @@ export function MyProfilePage() {
               {showModalWindow ? <EditPostContent getPostForModal={getPostForModal} post={showModalWindow}/> : null}
             </AnimatePresence>
             <h1>Профиль</h1>
-            <div className={css.card}>
+            <div className={css.card1}>
               <div>
                 <p>{`ФИО - ${me.firstname} ${me.lastname}`}</p>
                 <p>Ник - {me.nick}</p>
               </div>
-              <HiOutlinePencil className={css.pencil}/>
+              <Link to={getEditMyProfile()}>
+                <HiOutlinePencil className={css.pencil}/>
+              </Link>
+              
             </div>
             <h1>Ваши посты</h1>
             {me.posts.map((post) => {
               const date = getData(post.createdAt);
               return (
-                <div className={css.card} key={post.id}>
+                <div className={css.card2} key={post.id}>
                   <p>{post.text}</p>
                   <div className={css.panel}>
                     <ButtonChange onClick={() => {
