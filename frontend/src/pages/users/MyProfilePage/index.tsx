@@ -7,6 +7,7 @@ import { ButtonChange } from '../../../components/Button';
 import { useState } from 'react';
 import { EditPostContent } from '../../posts/EditPostPage';
 import { AnimatePresence } from "framer-motion";
+import { HiOutlinePencil } from "react-icons/hi";
 
 export function MyProfilePage() {
   const me = useMe();
@@ -32,8 +33,11 @@ export function MyProfilePage() {
             </AnimatePresence>
             <h1>Профиль</h1>
             <div className={css.card}>
-              <p>{`ФИО - ${me.firstname} ${me.lastname}`}</p>
-              <p>Ник - {me.nick}</p>
+              <div>
+                <p>{`ФИО - ${me.firstname} ${me.lastname}`}</p>
+                <p>Ник - {me.nick}</p>
+              </div>
+              <HiOutlinePencil className={css.pencil}/>
             </div>
             <h1>Ваши посты</h1>
             {me.posts.map((post) => {

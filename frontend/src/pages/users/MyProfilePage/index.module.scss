@@ -28,10 +28,20 @@
 
     height: auto;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     gap: 10px;
 
     padding: 15px;
+    .pencil {
+      height: 20px;
+      width: 20px;
+      border-radius: 5px;
+    }
+    .pencil:hover {
+      cursor: pointer;
+      background-color: rgb(211, 211, 211);
+      transition: background-color 0.2s ease-in;
+    }
     p {
       font-size: 20px;
       font-family: sans-serif;
