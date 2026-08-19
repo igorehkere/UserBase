@@ -1,5 +1,5 @@
 import { useForm } from "../../lib/form"
-import { zCreatePostTrpcInput } from '@authwithback/backend/src/router/posts/CreatePost/input';
+import { zCreatePostTrpcInput } from '@authwithback/backend/src/router/posts/createPost/input';
 import { trpc } from "../../utils/trpc";
 import css from './index.module.scss'
 import { FormItems } from "../FormItems";
