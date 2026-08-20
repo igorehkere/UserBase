@@ -39,8 +39,9 @@ export function SignUpPage() {
     onSubmit: async (values) => {
       const { token } = await signUp.mutateAsync(values);
       Cookies.set('token', token, { expires: 1 });
+      await trpcUtils.invalidate();
       navigate(getAllPostsRoute());
-      trpcUtils.invalidate();
+      
     },
     showValidationAlert: true,
     resetOnSuccess: false,

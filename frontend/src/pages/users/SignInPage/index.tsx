@@ -25,8 +25,9 @@ export function SignInPage() {
     onSubmit: async (values) => {
       const { token } = await signIn.mutateAsync(values);
       Cookies.set('token', token, { expires: 1 });
+      await trpcUtils.invalidate();
       navigate(getAllPostsRoute());
-      void trpcUtils.invalidate();
+      
     },
     resetOnSuccess: false,
     showValidationAlert: true,
