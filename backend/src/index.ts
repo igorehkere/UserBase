@@ -5,6 +5,7 @@ import { trpcRouter } from "./router";
 import { type AppContext, createAppContext } from "./lib/ctx";
 import { applyPassportToExpressApp } from "./lib/passport";
 import { env } from "./lib/env";
+import { presetDb } from "./scripts/presetDb";
 
 void (async () => {
   let ctx: AppContext | null = null;
@@ -12,6 +13,7 @@ void (async () => {
   try {
     const expressApp = express();
     ctx = createAppContext();
+    await presetDb(ctx)
     expressApp.use(cors());
     expressApp.get("/ping", (req, res) => {
       res.send("pong");

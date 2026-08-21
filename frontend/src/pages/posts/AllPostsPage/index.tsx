@@ -7,6 +7,8 @@ import { getData } from '../../../utils/getData';
 import { useMe } from '../../../lib/ctx';
 import { LikeButton } from '../../../components/LikeButton';
 import InfiniteScroll from 'react-infinite-scroller';
+import { BlockPostPage } from '../BlockPostPage';
+import { canBlockPosts } from '@authwithback/backend/src/utils/canBlockPosts';
 
 export function AllPostsPage() {
   const { data, isError, isLoading, error, hasNextPage, fetchNextPage, isFetchingNextPage } =
@@ -61,6 +63,9 @@ export function AllPostsPage() {
                     <div className={css.panelInfo}>
                       {me && <LikeButton post={post} />}
                       <p>{post.likesCount}</p>
+                      {canBlockPosts(me) && <div className={css.block}>
+                        <BlockPostPage post={post}/>
+                      </div>}
                       <span>{date}</span>
                     </div>
                   </div>
