@@ -5,16 +5,19 @@ import type React from 'react'
 export type ButtonProps = {
   children: React.ReactNode
   loading?: boolean
+  color?: ButtonColor
 }
+
+type ButtonColor = 'red' | 'green'
 
 type ButtonChange = {
     children: React.ReactNode
     onClick?: () => void
 }
 
-export function Button({ children, loading = false }: ButtonProps) {
+export function Button({ children, loading = false, color = 'green' }: ButtonProps) {
     return (
-        <button className={cn({[css.button]: true, [css.disabled]: loading, [css.loading]: loading})} type='submit' disabled={loading}>
+        <button className={cn({[css.button]: true, [css.disabled]: loading, [css.loading]: loading, [css[`color-${color}`]]: true})} type='submit' disabled={loading}>
             <span className={css.text}>{children}</span>
         </button>
     )
