@@ -4,6 +4,7 @@ import css from "./index.module.scss";
 import { useMe } from "../../lib/ctx";
 import { createRef } from "react";
 import { Navigation } from "../Navigation";
+import Logo from "../../assets/images/logo.svg?react";
 
 
 export const layoutContentElRef = createRef<HTMLDivElement>()
@@ -16,7 +17,8 @@ export function Layout() {
   return (
     <div className={css.layout}>
       <nav className={css.nav}>
-        <h1>UserBase</h1>
+        {/* <h1 style={{border: "1px black solid", borderRadius: 10, padding: 5}}>UserBase</h1> */}
+        <Logo className={css.logo}/>
         <div className={css.out}>
           <p>Здравствуйте, {me.firstname}</p>
           <Link to={getSignOutRoute()}>Выйти</Link>
