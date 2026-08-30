@@ -47,6 +47,9 @@ export function MyProfilePage() {
             <h1>Ваши посты</h1>
             {me.posts.map((post) => {
               const date = getData(post.createdAt);
+              if (post.blockedAt) {
+                return null
+              }
               return (
                 <div className={css.card2} key={post.id}>
                   <p>{post.text}</p>

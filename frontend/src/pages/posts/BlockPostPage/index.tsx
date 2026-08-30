@@ -12,6 +12,7 @@ export const BlockPostPage = ({ post }: { post: NonNullable<TrpcRouterOutput['ge
     onSubmit: async () => {
       await blockPost.mutateAsync({ postId: post.id });
       await trpcUtils.getPosts.refetch();
+      await trpcUtils.getMe.refetch();
     },
   });
   return (
