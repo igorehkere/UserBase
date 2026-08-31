@@ -29,6 +29,8 @@
         "typescript": "5.1.6"
     },
     "dependencies": {
+        "@authwithback/frontend": "workspace:*",
+        "@authwithback/shared": "workspace:*",
         "@prisma/client": "5.2.0",
         "@trpc/server": "10.37.1",
         "cors": "2.8.5",

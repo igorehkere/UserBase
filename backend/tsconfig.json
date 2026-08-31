@@ -4,8 +4,13 @@
     "transpileOnly": true
   },
   "compilerOptions": {
+    "plugins": [{"transform": "typescript-transform-paths"}],
+    "paths": {
+      "@authwithback/frontend/*": ["../frontend/*"],
+      "@authwithback/shared/*": ["../shared/*"]
+    },
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "..",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -24,5 +29,5 @@
     "moduleResolution": "node16",
     "target": "ES2021"
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts"]
 }

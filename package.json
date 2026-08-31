@@ -11,6 +11,8 @@
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
-    "husky": "8.0.3"
+    "husky": "8.0.3",
+    "ts-patch": "^4.0.1",
+    "typescript-transform-paths": "^4.0.0"
   }
 }
