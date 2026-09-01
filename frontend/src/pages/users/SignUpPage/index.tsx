@@ -11,6 +11,7 @@ import { getAllPostsRoute, getSignInRoute } from '../../../lib/routes';
 import Cookies from 'js-cookie';
 import { useForm } from '../../../lib/form';
 import { Helmet } from 'react-helmet-async';
+import { zPasswordMustBeSame } from '@authwithback/shared/src/zod';
 
 export function SignUpPage() {
   const navigate = useNavigate();
@@ -27,15 +28,7 @@ export function SignUpPage() {
     },
     validationSchema: zSignUpTrpcInput
       .extend({ againpassword: z.string('Пожалуйста повторите пароль') })
-      .superRefine((val, ctx) => {
-        if (val.password !== val.againpassword) {
-          ctx.addIssue({
-            code: 'custom',
-            message: 'Password must be the same',
-            path: ['againpassword'],
-          });
-        }
-      }),
+      .superRefine(zPasswordMustBeSame('password', 'againpassword')),
     onSubmit: async (values) => {
       const { token } = await signUp.mutateAsync(values);
       Cookies.set('token', token, { expires: 1 });
