@@ -1,8 +1,7 @@
-
-import { trpc } from '../../../lib/trpc';
+import { trpcLoggerProcedure } from '../../../trpc';
 import { zCreatePostTrpcInput } from './input';
 
-export const createPostTrpcRoute = trpc.procedure.input(zCreatePostTrpcInput).mutation(async ({ input, ctx }) => {
+export const createPostTrpcRoute = trpcLoggerProcedure.input(zCreatePostTrpcInput).mutation(async ({ input, ctx }) => {
   if (!ctx.me) {
     throw new Error('Для создания поста нужно авторизоваться');
   }

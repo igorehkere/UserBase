@@ -1,8 +1,8 @@
-import { trpc } from '../../../lib/trpc';
+import { trpcLoggerProcedure } from '../../../trpc';
 import { zSetPostLikeTrpcInput } from "./input";
 
 
-export const setPostLikeTrpcRoute = trpc.procedure.input(zSetPostLikeTrpcInput).mutation(async ({input, ctx}) => {
+export const setPostLikeTrpcRoute = trpcLoggerProcedure.input(zSetPostLikeTrpcInput).mutation(async ({input, ctx}) => {
     const {postId, isLikedByMe} = input
     if (!ctx.me) {
         throw new Error('UNAUTHORIZED')

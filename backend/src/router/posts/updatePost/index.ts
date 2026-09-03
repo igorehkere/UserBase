@@ -1,8 +1,8 @@
-import { trpc } from '../../../lib/trpc';
+import { trpcLoggerProcedure } from '../../../trpc';
 import { zUpdatePostTrpcInput } from "./input";
 
 
-export const updatePostTrpcRoute = trpc.procedure.input(zUpdatePostTrpcInput).mutation(async ({ctx, input}) => {
+export const updatePostTrpcRoute = trpcLoggerProcedure.input(zUpdatePostTrpcInput).mutation(async ({ctx, input}) => {
     const {postId, ...postInput} = input
 
     if (!ctx.me) {

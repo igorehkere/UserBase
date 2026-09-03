@@ -1,8 +1,8 @@
-import { trpc } from '../../../lib/trpc';
 import _ from 'lodash';
 import { zGetPostsTrpcInput } from './input';
+import { trpcLoggerProcedure } from '../../../trpc';
 
-export const getPostsTrpcRoute = trpc.procedure.input(zGetPostsTrpcInput).query(async ({ input, ctx }) => {
+export const getPostsTrpcRoute = trpcLoggerProcedure.input(zGetPostsTrpcInput).query(async ({ input, ctx }) => {
   const rawPosts = await ctx.prisma.post.findMany({
     select: {
       _count: {

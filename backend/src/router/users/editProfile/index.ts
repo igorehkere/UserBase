@@ -1,9 +1,9 @@
 import { toClientMe } from "../../../lib/models";
-import { trpc } from "../../../lib/trpc";
+import { trpcLoggerProcedure } from "../../../trpc";
 import { zEditProfileTrpcInput } from "./input";
 
 
-export const editProfileTrpcRoute = trpc.procedure.input(zEditProfileTrpcInput).mutation(async ({ctx, input}) => {
+export const editProfileTrpcRoute = trpcLoggerProcedure.input(zEditProfileTrpcInput).mutation(async ({ctx, input}) => {
     if (!ctx.me) {
         throw new Error('Only authorizated')
     }

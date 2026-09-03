@@ -1,9 +1,9 @@
-import { trpc } from "../../../lib/trpc";
+import { trpcLoggerProcedure } from "../../../trpc";
 import { getPasswordHash } from "../../../utils/getPasswordHash";
 import { zUpdatePasswordTrpcInput } from "./input";
 
 
-export const updatePasswordTrpcRoute = trpc.procedure.input(zUpdatePasswordTrpcInput).mutation(async ({ctx, input}) => {
+export const updatePasswordTrpcRoute = trpcLoggerProcedure.input(zUpdatePasswordTrpcInput).mutation(async ({ctx, input}) => {
     if (!ctx.me) {
         throw new Error('Only Authorizated')
     }

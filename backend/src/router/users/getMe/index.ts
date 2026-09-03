@@ -1,7 +1,7 @@
-import { trpc } from '../../../lib/trpc';
 import _ from "lodash";
+import { trpcLoggerProcedure } from '../../../trpc';
 
-export const getMeTrpcRoute = trpc.procedure.query(async ({ctx}) => {
+export const getMeTrpcRoute = trpcLoggerProcedure.query(async ({ctx}) => {
     const posts = await ctx.prisma.post.findMany({
         where: {
             authorId: ctx.me?.id

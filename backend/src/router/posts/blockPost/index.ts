@@ -1,8 +1,8 @@
-import { trpc } from '../../../lib/trpc';
+import { trpcLoggerProcedure } from '../../../trpc';
 import { canBlockPosts } from '../../../utils/canBlockPosts';
 import { zBlockPostTrpcInput } from './input';
 
-export const blockPostTrpcRoute = trpc.procedure.input(zBlockPostTrpcInput).mutation(async ({ ctx, input }) => {
+export const blockPostTrpcRoute = trpcLoggerProcedure.input(zBlockPostTrpcInput).mutation(async ({ ctx, input }) => {
   const { postId } = input;
   if (!canBlockPosts(ctx.me)) {
     throw new Error('Block posts only for admins');
