@@ -23,10 +23,10 @@ void (async () => {
     applyTrpcToExpressApp(expressApp, ctx, trpcRouter);
 
     expressApp.listen(port, () => {
-      logger.info(`Server listenning: http://localhost:${port}`);
+      logger.info('app', `Server listenning: http://localhost:${port}`);
     });
   } catch (e) {
-    logger.error(e);
+    logger.error('error', e);
     await ctx?.stop();
   }
 })();
