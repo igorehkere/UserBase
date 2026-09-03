@@ -18,7 +18,6 @@ export function MyProfilePage() {
   function getPostForModal(post: NonNullable<ReturnType<typeof useMe>>['posts'][number] | null) {
     setShowModalWindow(post)
   }
-  console.log(showModalWindow)
   return (
     <>
       <Helmet>

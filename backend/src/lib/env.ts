@@ -9,7 +9,8 @@ const zEnv = z.object({
     JWT_SECRET: zEnvNonemptyTrimmed,
     PORT: zEnvNonemptyTrimmed,
     PASSWORD_SALT: zEnvNonemptyTrimmed,
-    INITIAL_ADMIN_PASSWORD: zEnvNonemptyTrimmed
+    INITIAL_ADMIN_PASSWORD: zEnvNonemptyTrimmed,
+    HOST_ENV: z.enum(['local', 'production'])
 })
 
 export const env = zEnv.parse(process.env)
