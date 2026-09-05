@@ -1,8 +1,8 @@
-import { trpc } from '../../../lib/trpc';
+import { trpcLoggerProcedure } from '../../../lib/trpc';
 import { zGetUsersTrpcInput } from "./input";
 
 
-export const getUsersTrpcRoute = trpc.procedure.input(zGetUsersTrpcInput).query(async ({ctx, input}) => {
+export const getUsersTrpcRoute = trpcLoggerProcedure.input(zGetUsersTrpcInput).query(async ({ctx, input}) => {
 
   const noramalizedSearch = input.search ? input.search.trim().replace(/[\s\n\t]/g, '_') : undefined
   const users = await ctx.prisma.user.findMany({

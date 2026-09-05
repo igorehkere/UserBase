@@ -1,5 +1,5 @@
 import { toClientMe } from "../../../lib/models";
-import { trpcLoggerProcedure } from "../../../trpc";
+import { trpcLoggerProcedure } from "../../../lib/trpc";
 import { zEditProfileTrpcInput } from "./input";
 
 

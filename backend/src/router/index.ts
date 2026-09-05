@@ -1,5 +1,5 @@
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
-import { trpc } from "../lib/trpc";
+import { trpcRoute } from "../lib/trpc";
 // @index('./**/index.ts', f => `import { ${f.path.split('/').slice(0, -1).pop()}TrpcRoute } from '${f.path.split('/').slice(0, -1).join('/')}'`)
 import { blockPostTrpcRoute } from './posts/blockPost'
 import { createPostTrpcRoute } from './posts/createPost'
@@ -19,7 +19,7 @@ import { updatePasswordTrpcRoute } from './users/updatePassword'
 
 
 
-export const trpcRouter = trpc.router({
+export const trpcRouter = trpcRoute({
     // @index('./**/index.ts', f => `${f.path.split('/').slice(0, -1).pop()}: ${f.path.split('/').slice(0, -1).pop()}TrpcRoute,`)
     blockPost: blockPostTrpcRoute,
     createPost: createPostTrpcRoute,

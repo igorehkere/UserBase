@@ -1,4 +1,4 @@
-import { trpcLoggerProcedure } from '../../../trpc';
+import { trpcLoggerProcedure } from '../../../lib/trpc';
 import { canBlockPosts } from '../../../utils/canBlockPosts';
 import { zBlockPostTrpcInput } from './input';
 

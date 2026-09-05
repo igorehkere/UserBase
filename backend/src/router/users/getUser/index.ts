@@ -1,7 +1,7 @@
 import z from "zod";
-import { trpc } from '../../../lib/trpc';
+import { trpcLoggerProcedure } from '../../../lib/trpc';
 
-export const getUserTrpcRoute = trpc.procedure
+export const getUserTrpcRoute = trpcLoggerProcedure
   .input(
     z.object({
       userName: z.string(),

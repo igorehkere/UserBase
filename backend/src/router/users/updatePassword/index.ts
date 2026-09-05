@@ -1,4 +1,4 @@
-import { trpcLoggerProcedure } from "../../../trpc";
+import { trpcLoggerProcedure } from "../../../lib/trpc";
 import { getPasswordHash } from "../../../utils/getPasswordHash";
 import { zUpdatePasswordTrpcInput } from "./input";
 

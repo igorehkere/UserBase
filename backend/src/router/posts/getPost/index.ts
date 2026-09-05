@@ -1,8 +1,8 @@
 import _ from 'lodash';
-import { trpc } from '../../../lib/trpc';
+import { trpcLoggerProcedure } from '../../../lib/trpc';
 import { zGetPostTrpcInput } from './input';
 
-export const getPostTrpcRoute = trpc.procedure.input(zGetPostTrpcInput).query(async ({ ctx, input }) => {
+export const getPostTrpcRoute = trpcLoggerProcedure.input(zGetPostTrpcInput).query(async ({ ctx, input }) => {
   const rawPost = await ctx.prisma.post.findUnique({
     where: {
       id: input.id,

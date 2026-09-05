@@ -1,4 +1,4 @@
-import { trpcLoggerProcedure } from '../../../trpc';
+import { trpcLoggerProcedure } from "../../../lib/trpc";
 import { zUpdatePostTrpcInput } from "./input";
 
 

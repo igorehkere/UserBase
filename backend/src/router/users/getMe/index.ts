@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { trpcLoggerProcedure } from '../../../trpc';
+import { trpcLoggerProcedure } from "../../../lib/trpc";
 
 export const getMeTrpcRoute = trpcLoggerProcedure.query(async ({ctx}) => {
     const posts = await ctx.prisma.post.findMany({

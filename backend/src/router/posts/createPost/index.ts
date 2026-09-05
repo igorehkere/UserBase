@@ -1,4 +1,4 @@
-import { trpcLoggerProcedure } from '../../../trpc';
+import { trpcLoggerProcedure } from '../../../lib/trpc';
 import { zCreatePostTrpcInput } from './input';
 
 export const createPostTrpcRoute = trpcLoggerProcedure.input(zCreatePostTrpcInput).mutation(async ({ input, ctx }) => {
