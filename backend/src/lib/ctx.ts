@@ -1,13 +1,13 @@
-import { PrismaClient } from "@prisma/client";
+import { createPrismaClient } from './prisma';
 
 export const createAppContext = () => {
-    const prisma = new PrismaClient()
-    return {
-        prisma,
-        stop: async () => {
-            await prisma.$disconnect()
-        }
-    }
-}
+  const prisma = createPrismaClient();
+  return {
+    prisma,
+    stop: async () => {
+      await prisma.$disconnect();
+    },
+  };
+};
 
-export type AppContext = ReturnType<typeof createAppContext>
+export type AppContext = ReturnType<typeof createAppContext>;
