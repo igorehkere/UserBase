@@ -1,7 +1,18 @@
 import winston from "winston";
 import { env } from "./env";
 import { serializeError } from "serialize-error";
+import { deepMap } from "./deepMap";
 
+type Meta = Record<string, any> | undefined
+
+const prettifyMeta = (meta: Meta): Meta => {
+    return deepMap(meta, ({key, value}) => {
+        if (['email', 'password', 'newPassword', 'oldPassword', 'token'].includes(key)) {
+            return 'hide'
+        }
+        return value
+    })
+}
 
 const winstonLogger = winston.createLogger({
     level: 'debug',
@@ -22,7 +33,7 @@ const winstonLogger = winston.createLogger({
 
 export const logger = {
     info: (logType: string, message: string, meta?: Record<string, any>) => {
-        winstonLogger.info(message, {logType, ...meta})
+        winstonLogger.info(message, {logType, ...prettifyMeta(meta)})
     },
     error: (logType: string, error: any, meta?: Record<string, any>) => {
         const serializedError = serializeError(error)
@@ -30,7 +41,7 @@ export const logger = {
             logType,
             error,
             errorStack: serializedError.stack,
-            ...meta
+            ...prettifyMeta(meta)
         })
     }
 }
