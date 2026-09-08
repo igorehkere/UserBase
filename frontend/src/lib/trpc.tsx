@@ -1,7 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { httpBatchLink } from '@trpc/client';
+import { httpBatchLink, loggerLink } from '@trpc/client';
 import { trpc } from '../utils/trpc';
 import Cookies from 'js-cookie';
+import { env } from './env';
 
 type props = {
   children: React.ReactNode;
@@ -19,7 +20,7 @@ const queryClient = new QueryClient({
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: 'http://localhost:3000/trpc',
+      url: `${env.VITE_BACKEND_TRPC_URL}/trpc`,
       headers: () => {
         const token = Cookies.get('token');
         return {
@@ -27,6 +28,9 @@ const trpcClient = trpc.createClient({
         };
       },
     }),
+    loggerLink({
+      enabled: () => env.NODE_ENV === 'development'
+    })
   ],
 });
 
