@@ -2,6 +2,7 @@ import winston from "winston";
 import { env } from "./env";
 import { serializeError } from "serialize-error";
 import { deepMap } from "./deepMap";
+import debug from "debug";
 
 type Meta = Record<string, any> | undefined
 
@@ -33,9 +34,15 @@ const winstonLogger = winston.createLogger({
 
 export const logger = {
     info: (logType: string, message: string, meta?: Record<string, any>) => {
+        if (!debug.enabled(`userbase:${logType}`)) {
+            return
+        }
         winstonLogger.info(message, {logType, ...prettifyMeta(meta)})
     },
     error: (logType: string, error: any, meta?: Record<string, any>) => {
+        if (!debug.enabled(`userbase:${logType}`)) {
+            return
+        }
         const serializedError = serializeError(error)
         winstonLogger.error(serializedError.message || 'Unknown error', {
             logType,
