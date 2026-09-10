@@ -12,6 +12,7 @@ import { AllPostsPage } from './pages/posts/AllPostsPage';
 import { MyProfilePage } from './pages/users/MyProfilePage';
 import { NotFoundPage } from './pages/other/NotFoundPage';
 import { EditProfilePage } from './pages/users/EditProfilePage';
+import './lib/sentry'
 
 export function App() {
   const me = useMe();
