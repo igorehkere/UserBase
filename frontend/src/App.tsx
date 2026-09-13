@@ -13,12 +13,14 @@ import { MyProfilePage } from './pages/users/MyProfilePage';
 import { NotFoundPage } from './pages/other/NotFoundPage';
 import { EditProfilePage } from './pages/users/EditProfilePage';
 import './lib/sentry'
+import { SentryUser } from './lib/sentry';
 
 export function App() {
   const me = useMe();
   return (
     <HelmetProvider>
       <BrowserRouter>
+        <SentryUser />
         <Routes>
           {me ? (
             <>
