@@ -1,3 +1,4 @@
+import { ExpectedError } from '../../../lib/error';
 import { trpcLoggerProcedure } from '../../../lib/trpc';
 import { getPasswordHash } from '../../../utils/getPasswordHash';
 import { signJWT } from '../../../utils/signJWT';
@@ -11,7 +12,7 @@ export const SignInTrpcRoute = trpcLoggerProcedure.input(zSignInTrpcInput).mutat
     },
   });
   if (!user) {
-    throw new Error('Логин или пароль неверный');
+    throw new ExpectedError('Логин или пароль неверный');
   }
   const token = signJWT(user.id);
   return { token };

@@ -5,6 +5,7 @@ import * as trpcExpress from '@trpc/server/adapters/express'
 import { type AppContext } from "./ctx";
 import { type ExpressRequest } from "../utils/types";
 import { logger } from "./logger";
+import { ExpectedError } from "./error";
 
 const getCreateTrpcContext = (appContext: AppContext) => ({req}: trpcExpress.CreateExpressContextOptions) => ({
     ...appContext,
@@ -12,7 +13,22 @@ const getCreateTrpcContext = (appContext: AppContext) => ({req}: trpcExpress.Cre
 })
 type TrpcContext = inferAsyncReturnType<ReturnType<typeof getCreateTrpcContext>>
 
-const trpc = initTRPC.context<TrpcContext>().create();
+const trpc = initTRPC.context<TrpcContext>().create({
+    errorFormatter: ({
+        shape,
+        error
+    }) => {
+        const originalError = error.cause
+        const isExpected = originalError instanceof ExpectedError
+        return {
+            ...shape,
+            data: {
+                ...shape.data,
+                isExpected
+            }
+        }
+    }
+});
 
 export const trpcRoute = trpc.router
 

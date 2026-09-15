@@ -1,3 +1,4 @@
+import { ExpectedError } from '../../../lib/error';
 import { trpcLoggerProcedure } from '../../../lib/trpc';
 import { canBlockPosts } from '../../../utils/canBlockPosts';
 import { zBlockPostTrpcInput } from './input';
@@ -13,7 +14,7 @@ export const blockPostTrpcRoute = trpcLoggerProcedure.input(zBlockPostTrpcInput)
     },
   });
   if (!post) {
-    throw new Error('Post not found');
+    throw new ExpectedError('Post not found');
   }
   await ctx.prisma.post.update({
     where: {

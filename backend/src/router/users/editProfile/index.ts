@@ -1,3 +1,4 @@
+import { ExpectedError } from "../../../lib/error";
 import { toClientMe } from "../../../lib/models";
 import { trpcLoggerProcedure } from "../../../lib/trpc";
 import { zEditProfileTrpcInput } from "./input";
@@ -14,7 +15,7 @@ export const editProfileTrpcRoute = trpcLoggerProcedure.input(zEditProfileTrpcIn
             }
         })
         if (exUser) {
-            throw new Error('Пользователь с таким ником уже существует')
+            throw new ExpectedError('Пользователь с таким ником уже существует')
         }
     }
     const updatedMe = await ctx.prisma.user.update({

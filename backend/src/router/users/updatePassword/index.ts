@@ -1,3 +1,4 @@
+import { ExpectedError } from "../../../lib/error";
 import { trpcLoggerProcedure } from "../../../lib/trpc";
 import { getPasswordHash } from "../../../utils/getPasswordHash";
 import { zUpdatePasswordTrpcInput } from "./input";
@@ -8,7 +9,7 @@ export const updatePasswordTrpcRoute = trpcLoggerProcedure.input(zUpdatePassword
         throw new Error('Only Authorizated')
     }
     if (ctx.me.password !== getPasswordHash(input.oldPassword)) {
-        throw new Error('Пароли не совпадают')
+        throw new ExpectedError('Пароли не совпадают')
     }
     const updatedMe = await ctx.prisma.user.update({
         where: {

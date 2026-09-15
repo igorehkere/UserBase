@@ -1,3 +1,4 @@
+import { ExpectedError } from '../../../lib/error';
 import { trpcLoggerProcedure } from '../../../lib/trpc';
 import { getPasswordHash } from '../../../utils/getPasswordHash';
 import { signJWT } from '../../../utils/signJWT';
@@ -10,7 +11,7 @@ export const signUpTrpcRoute = trpcLoggerProcedure.input(zSignUpTrpcInput).mutat
     },
   });
   if (exUser) {
-    throw new Error('User with this nick already exists ');
+    throw new ExpectedError('User with this nick already exists ');
   }
   const user = await ctx.prisma.user.create({
     data: {
