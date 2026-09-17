@@ -4,7 +4,7 @@ import type { Post, User, UserPersmissions } from "@prisma/client";
 type MaybeUser = Pick<User, 'permissions' | 'id'> | null
 type MaybePost = Pick<Post, 'authorId'> | null
 
-const hasPermission = (user: MaybeUser, permission: UserPersmissions) => {
+export const hasPermission = (user: MaybeUser, permission: UserPersmissions) => {
     return user?.permissions.includes(permission) || user?.permissions.includes('ALL') || false
 }
 

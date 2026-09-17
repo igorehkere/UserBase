@@ -7,11 +7,15 @@
     "f": "pnpm --filter @authwithback/frontend",
     "dev": "pnpm -r --parallel dev",
     "types": "concurrently \"pnpm b types\" \"pnpm f types\"",
-    "prettify": "pnpm -r --parallel prettify"
+    "prettify": "pnpm -r --parallel prettify",
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "29.5.5",
     "concurrently": "^9.2.1",
     "husky": "8.0.3",
+    "jest": "29.7.0",
+    "ts-jest": "29.1.1",
     "ts-patch": "^4.0.1",
     "typescript-transform-paths": "^4.0.0"
   }

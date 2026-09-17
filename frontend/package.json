@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "prettify": "prettier --log-level warn --cache --write \"{src/**/*,*}. {ts,tsx,js,json,yml,scss}\" \"!**/{node_modules, dist}/**/*\"",
     "types": "tsc --noEmit --project ./tsconfig.json && tsc --noEmit --project ./tsconfig.app.json",
-    "stylecheck": "sass --update -q ./src:./node_modules/.cache/.stylecheck"
+    "stylecheck": "sass --update -q ./src:./node_modules/.cache/.stylecheck",
+    "test": "jest"
   },
   "dependencies": {
     "@authwithback/backend": "workspace:*",

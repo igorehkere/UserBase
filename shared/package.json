@@ -4,7 +4,8 @@
     "version": "0.0.0",
     "scripts": {
         "type": "tsc --noEmit --project ./tsconfig.json",
-        "prettify": "prettier --log-level warn --cache --write \"{src/**/*,*}. {ts,tsx,js,json,yml,scss}\" \"!**/{node_modules, dist}/**/*\""
+        "prettify": "prettier --log-level warn --cache --write \"{src/**/*,*}. {ts,tsx,js,json,yml,scss}\" \"!**/{node_modules, dist}/**/*\"",
+        "test": "jest"
     },
     "dependencies": {
         "zod": "^4.4.3"
