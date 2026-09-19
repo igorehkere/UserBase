@@ -13,6 +13,7 @@ import { Alert } from "../../../components/Alert"
 import { Button } from "../../../components/Button"
 import { zUpdatePasswordTrpcInput } from "@authwithback/backend/src/router/users/updatePassword/input"
 import z from "zod"
+import { UploadToCloudinary } from "../../../components/UploadToCloudinary"
 
 
 export const EditProfilePage = () => {
@@ -68,6 +69,7 @@ const EditProfileComponent = ({me}: {me: NonNullable<TrpcRouterOutput['getMe']['
                         <Input name="nick" label="Ник" formik={formik} />
                         <Input name="firstname" label="Имя" formik={formik} />
                         <Input name="lastname" label="Фамилия" formik={formik} />
+                        <UploadToCloudinary label='Аватар' name='avatar' type='avatar' preset='big' formik={formik}/>
                         <Alert {...alertProps} />
                         <Button {...buttonProps}>Изменить</Button>
                     </FormItems>

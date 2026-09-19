@@ -6,7 +6,7 @@ import { cloudinaryUploadTypes } from '@authwithback/shared/src/cloudinary';
 
 export const prepareCloudinaryUploadTrpcRoute = trpcLoggerProcedure
   .input(zPrepareCloudinaryUploadTrpcInput)
-  .mutation(async ({ ctx, input }) => {
+  .mutation(async ({ input }) => {
     if (!env.CLOUDINARY_API_KEY) {
       throw new Error('Cloudinary api key not found');
     }

@@ -7,6 +7,7 @@ import { getPostTrpcRoute } from './posts/getPost'
 import { getPostsTrpcRoute } from './posts/getPosts'
 import { setPostLikeTrpcRoute } from './posts/setPostLike'
 import { updatePostTrpcRoute } from './posts/updatePost'
+import { prepareCloudinaryUploadTrpcRoute } from './upload/prepareCloudinaryUpload'
 import { editProfileTrpcRoute } from './users/editProfile'
 import { getMeTrpcRoute } from './users/getMe'
 import { getUserTrpcRoute } from './users/getUser'
@@ -27,6 +28,7 @@ export const trpcRouter = trpcRoute({
     getPosts: getPostsTrpcRoute,
     setPostLike: setPostLikeTrpcRoute,
     updatePost: updatePostTrpcRoute,
+    prepareCloudinaryUpload: prepareCloudinaryUploadTrpcRoute,
     editProfile: editProfileTrpcRoute,
     getMe: getMeTrpcRoute,
     getUser: getUserTrpcRoute,
