@@ -12,7 +12,7 @@ export const getMeTrpcRoute = trpcLoggerProcedure.query(async ({ctx}) => {
     })
     return {
         me: ctx.me ? {
-            ..._.pick(ctx.me, ['id', 'nick', 'firstname', 'lastname', 'permissions']),
+            ..._.pick(ctx.me, ['id', 'nick', 'firstname', 'lastname', 'permissions', 'avatar']),
             posts
         } : null
     }

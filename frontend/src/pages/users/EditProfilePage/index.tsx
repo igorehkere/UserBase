@@ -42,7 +42,8 @@ const EditProfileComponent = ({me}: {me: NonNullable<TrpcRouterOutput['getMe']['
         initialValues: {
             nick: me.nick,
             firstname: me.firstname,
-            lastname: me.lastname
+            lastname: me.lastname,
+            avatar: me.avatar
         },
         validationSchema: zEditProfileTrpcInput,
         onSubmit: async (values) => {
