@@ -12,6 +12,7 @@
             width: 100%;
             max-width: 130px;
             height: auto;
+            
         }
         h1 {
             font-size: 34px;
@@ -19,6 +20,23 @@
         }
         .out {
             font-family: sans-serif;
+            .avatar {
+                border-radius: 50%;
+                height: 50px;
+            }
+            .arrowDown {
+                height: 10px;
+            }
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .out:hover {
+            cursor: pointer;
+            background-color: rgb(202, 200, 200);
+            transition: background-color 0.1s ease-in;
         }
         .btns {
             font-size: 20px;

@@ -38,7 +38,7 @@ export const getCloudinaryUploadUrl = <TTypeName extends CloudinaryUploadTypeNam
   publicId: string,
   typeName: TTypeName,
   presetName: CloudinaryUploadPresetName<TTypeName>
-) => {
+): string => {
   const type = cloudinaryUploadTypes[typeName] as CloudinaryUploadType;
   const preset = type.presets[presetName as string];
 
@@ -48,8 +48,8 @@ export const getCloudinaryUploadUrl = <TTypeName extends CloudinaryUploadTypeNam
 export const getAvatarUrl = (
   publicId: string | null | undefined,
   preset: keyof CloudinaryUploadTypes['avatar']['presets']
-) => {
-  publicId
+): string => {
+  return (publicId
     ? getCloudinaryUploadUrl(publicId, 'avatar', preset)
-    : getCloudinaryUploadUrl('avatars/avatar-placeholder', 'avatar', preset);
+    : getCloudinaryUploadUrl('avatars/avatar-placeholder', 'avatar', preset));
 };

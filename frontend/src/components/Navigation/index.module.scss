@@ -2,3 +2,12 @@ a {
     text-decoration: none;
     color: inherit;
 }
+.buttonNav {
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    gap: 5px;
+    .buttonIcon {
+        height: 20px;
+    }
+}
