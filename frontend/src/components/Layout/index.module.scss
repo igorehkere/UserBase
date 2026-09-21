@@ -58,6 +58,9 @@
             background-color: rgb(182, 181, 248);
             transition: background-color 0.3s ease-in;
         }
+        .buttonWindow {
+            all: unset;
+        }
     }
     .navi {
         background-color: aqua;
