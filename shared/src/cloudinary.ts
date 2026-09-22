@@ -51,5 +51,5 @@ export const getAvatarUrl = (
 ): string => {
   return (publicId
     ? getCloudinaryUploadUrl(publicId, 'avatar', preset)
-    : getCloudinaryUploadUrl('avatars/avatar-placeholder', 'avatar', preset));
+    : getCloudinaryUploadUrl('avatar/avatar-placeholder', 'avatar', preset));
 };
