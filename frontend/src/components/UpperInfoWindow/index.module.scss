@@ -1,7 +1,7 @@
 .upperWindow {
     position: absolute;
     top: 80px;
-    right: 50px;
+    right: 30px;
     background-color: rgb(224, 224, 224);
     height: auto;
     width: 250px;
@@ -10,6 +10,8 @@
     align-items: center;
     gap: 15px;
     padding: 15px;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     .p {
         font-family: sans-serif;
         
@@ -20,7 +22,7 @@
         width: 70px;
     }
     .nick {
-        font-size: 20px;
+        font-size: 18px;
         color: grey
     }
     .name {
@@ -28,13 +30,20 @@
     }
     .buttonExit {
         all: unset;
-        border-radius: 15px;
         height: 50px;
-        width: 100px;
+        width: 250px;
         font-size: 15px;
         display: flex;
         justify-content: center;
         align-items: center;
+        .textButton {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            p {
+                font-weight: bold;
+            }
+        }
     }
     .buttonExit:hover {
         background-color: rgba(3, 3, 3, 0.103);

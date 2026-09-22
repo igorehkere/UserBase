@@ -36,7 +36,7 @@ export function Layout() {
         >
           <div className={css.out}>
             <img className={css.avatar} alt="" src={getAvatarUrl(me.avatar, 'small')} />
-            <Icon size={24} className={css.arrowDown} name="arrowDown" />
+            {showUpperWindow ? <Icon size={24} className={css.arrowDown} name="arrowUp" /> : <Icon size={24} className={css.arrowDown} name="arrowDown" />}
           </div>
         </ButtonOpenWindow>
         {!!showUpperWindow && <UpperInfoWindow me={me} />}

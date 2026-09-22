@@ -3,7 +3,8 @@ import type { IconBaseProps } from 'react-icons';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { BiBookContent } from 'react-icons/bi';
-import { CgUser } from "react-icons/cg";
+import { CgUser } from 'react-icons/cg';
+import { TbArrowLeftFromArc } from 'react-icons/tb';
 
 const icons = {
   likeEmpty: AiOutlineHeart,
@@ -12,6 +13,7 @@ const icons = {
   arrowUp: SlArrowUp,
   userIcon: CgUser,
   postsIcon: BiBookContent,
+  exitIcon: TbArrowLeftFromArc,
 };
 
 export const Icon = ({ name, ...restProps }: { name: keyof typeof icons } & IconBaseProps) => {
