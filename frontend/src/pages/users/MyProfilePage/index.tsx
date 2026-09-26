@@ -2,8 +2,7 @@ import css from './index.module.scss';
 import { Loader } from '../../../components/Loader';
 import { Helmet } from 'react-helmet-async';
 import { useMe } from '../../../lib/ctx';
-import { getData } from '../../../utils/getData';
-import { ButtonChange } from '../../../components/Button';
+// import { getData } from '../../../utils/getData';
 import { useState } from 'react';
 import { EditPostContent } from '../../posts/EditPostPage';
 import { AnimatePresence } from 'framer-motion';
@@ -11,6 +10,7 @@ import { HiOutlinePencil } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { getEditMyProfile } from '../../../lib/routes';
 import { getAvatarUrl } from '@authwithback/shared/src/cloudinary';
+import { LikeButton } from '../../../components/LikeButton';
 
 export function MyProfilePage() {
   const me = useMe();
@@ -55,22 +55,22 @@ export function MyProfilePage() {
               <h1>Ваши посты</h1>
               <div>
                 {me.posts.map((post) => {
-                  const date = getData(post.createdAt);
+                  // const date = getData(post.createdAt);
                   if (post.blockedAt) {
                     return null;
                   }
                   return (
                     <div className={css.card2} key={post.id}>
-                      <p>{post.text}</p>
-                      <div className={css.panel}>
-                        <ButtonChange
-                          onClick={() => {
-                            getPostForModal(post);
-                          }}
-                        >
-                          Изменить
-                        </ButtonChange>
-                        <span>{date}</span>
+                      <div>
+                        <img alt="" className={css.logoPost} src={getAvatarUrl(me.avatar, 'small')} />
+                        <p>{`${me.firstname} ${me.lastname}`}</p>
+                      </div>
+                      <img alt='Soon' className={css.imagePost} src='/public/no-photo.png'/>
+                      <div>
+                        <div>
+                          <LikeButton post={post} />
+                          <p>{post.likesCount}</p>
+                        </div>
                       </div>
                     </div>
                   );
@@ -83,3 +83,7 @@ export function MyProfilePage() {
     </>
   );
 }
+
+// onClick={() => {
+//                             getPostForModal(post);
+//                           }}
