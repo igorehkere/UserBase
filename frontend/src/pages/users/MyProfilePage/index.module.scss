@@ -8,14 +8,23 @@
   gap: 10px;
   flex-direction: column;
   align-items: center;
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
   .newProfile {
     background-color: white;
     height: auto;
     width: 50%;
+    border-radius: 15px;
     .infoAboutYou {
       display: flex;
       gap: 40px;
       padding: 0 40px 2px 0;
+      .avatar {
+        border-radius: 15px;
+      }
       .card1 {
         width: 100%;
         .data {
@@ -36,6 +45,38 @@
         .pencilWr {
           display: flex;
           justify-content: end;
+        }
+      }
+    }
+    .card2 {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .headerPost {
+        display: flex;
+        align-items: center;
+        padding: 0 15px 0 15px;
+        gap: 15px;
+        .logoPost {
+          height: 50px;
+          border-radius: 50%;
+        }
+      }
+      .text {
+        padding: 0 15px 0 15px;
+      }
+      .imagePost {
+        height: 600px;
+        width: 810px;
+      }
+      .footerPost {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15px 0 15px;
+        .likes {
+          display: flex;
+          align-items: center;
         }
       }
     }
@@ -60,3 +101,4 @@
     font-weight: bold;
   }
 }  
+

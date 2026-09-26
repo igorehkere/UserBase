@@ -2,7 +2,7 @@ import css from './index.module.scss';
 import { Loader } from '../../../components/Loader';
 import { Helmet } from 'react-helmet-async';
 import { useMe } from '../../../lib/ctx';
-// import { getData } from '../../../utils/getData';
+import { getData } from '../../../utils/getData';
 import { useState } from 'react';
 import { EditPostContent } from '../../posts/EditPostPage';
 import { AnimatePresence } from 'framer-motion';
@@ -53,24 +53,26 @@ export function MyProfilePage() {
               </div>
               <hr />
               <h1>Ваши посты</h1>
-              <div>
+              <div className={css.posts}>
                 {me.posts.map((post) => {
-                  // const date = getData(post.createdAt);
+                  const date = getData(post.createdAt);
                   if (post.blockedAt) {
                     return null;
                   }
                   return (
                     <div className={css.card2} key={post.id}>
-                      <div>
+                      <div className={css.headerPost}>
                         <img alt="" className={css.logoPost} src={getAvatarUrl(me.avatar, 'small')} />
                         <p>{`${me.firstname} ${me.lastname}`}</p>
                       </div>
                       <img alt='Soon' className={css.imagePost} src='/public/no-photo.png'/>
-                      <div>
-                        <div>
+                      <p className={css.text}>{post.text}</p>
+                      <div className={css.footerPost}>
+                        <div className={css.likes}>
                           <LikeButton post={post} />
                           <p>{post.likesCount}</p>
                         </div>
+                        <p>{date}</p>
                       </div>
                     </div>
                   );
