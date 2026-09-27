@@ -62,10 +62,17 @@ export function MyProfilePage() {
                   return (
                     <div className={css.card2} key={post.id}>
                       <div className={css.headerPost}>
-                        <img alt="" className={css.logoPost} src={getAvatarUrl(me.avatar, 'small')} />
-                        <p>{`${me.firstname} ${me.lastname}`}</p>
+                        <div className={css.logoPlusName}>
+                          <img alt="" className={css.logoPost} src={getAvatarUrl(me.avatar, 'small')} />
+                          <p>{`${me.firstname} ${me.lastname}`}</p>
+                        </div>
+                        <button className={css.changePostButton} onClick={() => {
+                          getPostForModal(post);
+                        }}>
+                          <HiOutlinePencil />
+                        </button>
                       </div>
-                      <img alt='Soon' className={css.imagePost} src='/public/no-photo.png'/>
+                      <img alt="Soon" className={css.imagePost} src="/public/no-photo.png" />
                       <p className={css.text}>{post.text}</p>
                       <div className={css.footerPost}>
                         <div className={css.likes}>
@@ -86,6 +93,3 @@ export function MyProfilePage() {
   );
 }
 
-// onClick={() => {
-//                             getPostForModal(post);
-//                           }}

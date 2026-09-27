@@ -115,7 +115,7 @@ export const UploadToCloudinary = <TTypeName extends CloudinaryUploadTypeName>({
         disabled={loading || disabled}
         color="green"
       >
-        {value ? 'Upload another' : 'Upload'}
+        {value ? 'Обновить снова' : 'Обновить'}
       </ButtonUploadImage>
       <div className={css.buttons}>
         {!!value && !loading && (
@@ -129,7 +129,7 @@ export const UploadToCloudinary = <TTypeName extends CloudinaryUploadTypeName>({
             }}
             disabled={disabled}
           >
-            Remove
+            Удалить фото
           </ButtonUploadImage>
         )}
       </div>

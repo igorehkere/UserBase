@@ -56,11 +56,24 @@
       .headerPost {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         padding: 0 15px 0 15px;
         gap: 15px;
         .logoPost {
           height: 50px;
           border-radius: 50%;
+        }
+        .logoPlusName {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+        }
+        .changePostButton {
+          background-color: white;
+          border: none;
+        }
+        .changePostButton:hover {
+          cursor: pointer;
         }
       }
       .text {
