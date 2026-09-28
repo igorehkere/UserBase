@@ -8,6 +8,61 @@
   gap: 10px;
   flex-direction: column;
   align-items: center;
+  .scrollPosts {
+    background-color: white;
+    height: auto;
+    width: 50%;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .card2 {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .headerPost {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15px 0 15px;
+        gap: 15px;
+        .logoPost {
+          height: 50px;
+          border-radius: 50%;
+        }
+        .logoPlusName {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+        }
+        .changePostButton {
+          background-color: white;
+          border: none;
+        }
+        .changePostButton:hover {
+          cursor: pointer;
+        }
+      }
+      .text {
+        padding: 0 15px 0 15px;
+      }
+      .imagePost {
+        height: 600px;
+        width: 100%;
+      }
+      .footerPost {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15px 0 15px;
+        .likes {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
   .scroller {
     width: 100%;
     display: flex;
@@ -47,9 +102,9 @@
       font-size: 20px;
       font-family: sans-serif;
       word-wrap: break-word;
-      word-break: break-word; 
-      overflow-wrap: break-word; 
-      width: 100%; 
+      word-break: break-word;
+      overflow-wrap: break-word;
+      width: 100%;
     }
     span {
       font-size: 20px;

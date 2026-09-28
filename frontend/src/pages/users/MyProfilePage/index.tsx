@@ -72,7 +72,7 @@ export function MyProfilePage() {
                           <HiOutlinePencil />
                         </button>
                       </div>
-                      <img alt="Soon" className={css.imagePost} src="/public/no-photo.png" />
+                      <img alt="Soon" className={css.imagePost} src="/public/favicon2.png" />
                       <p className={css.text}>{post.text}</p>
                       <div className={css.footerPost}>
                         <div className={css.likes}>
