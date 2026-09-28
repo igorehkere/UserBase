@@ -4,12 +4,13 @@ import { Loader } from '../../../components/Loader';
 import { Helmet } from 'react-helmet-async';
 import { CreatePost } from '../../../components/CreatePost';
 import { getData } from '../../../utils/getData';
-// import { useMe } from '../../../lib/ctx';
+import { useMe } from '../../../lib/ctx';
 import { LikeButton } from '../../../components/LikeButton';
 import InfiniteScroll from 'react-infinite-scroller';
-// import { BlockPostPage } from '../BlockPostPage';
-// import { canBlockPosts } from '@authwithback/backend/src/utils/canBlockPosts';
+import { BlockPostPage } from '../BlockPostPage';
+import { canBlockPosts } from '@authwithback/backend/src/utils/canBlockPosts';
 import { getAvatarUrl } from '@authwithback/shared/src/cloudinary';
+
 
 export function AllPostsPage() {
   const { data, isError, isLoading, error, hasNextPage, fetchNextPage, isFetchingNextPage } =
@@ -23,7 +24,8 @@ export function AllPostsPage() {
         },
       }
     );
-  // const me = useMe();
+  const me = useMe();
+  
   return (
     <>
       <Helmet>
@@ -63,6 +65,7 @@ export function AllPostsPage() {
                             <img alt="" className={css.logoPost} src={getAvatarUrl(post.author.avatar, 'small')} />
                             <p>{`${post.author.firstname} ${post.author.lastname}`}</p>
                           </div>
+                          {!!canBlockPosts(me) && <BlockPostPage post={post}/>}
                         </div>
                         <img alt="Soon" className={css.imagePost} src="/public/favicon2.png" />
                         <p className={css.text}>{post.text}</p>

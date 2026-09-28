@@ -3,7 +3,8 @@ import { trpc } from '../../../utils/trpc';
 import { useForm } from '../../../lib/form';
 import { FormItems } from '../../../components/FormItems';
 import { Alert } from '../../../components/Alert';
-import { Button } from '../../../components/Button';
+import { Icon } from '../../../components/Icon';
+import css from './index.module.scss'
 
 export const BlockPostPage = ({ post }: { post: NonNullable<TrpcRouterOutput['getPost']['post']> }) => {
   const blockPost = trpc.blockPost.useMutation();
@@ -22,9 +23,9 @@ export const BlockPostPage = ({ post }: { post: NonNullable<TrpcRouterOutput['ge
     }}>
       <FormItems>
         <Alert {...alertProps} />
-        <Button color="red" {...buttonProps}>
-          X
-        </Button>
+        <button className={css.blockButton} {...buttonProps}>
+          <Icon className={css.iconBlock} name='blockPost'/>
+        </button>
       </FormItems>
     </form>
   );
