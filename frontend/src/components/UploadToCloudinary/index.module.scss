@@ -1,3 +1,14 @@
 .fileInput {
-    display: none;
+  display: none;
+}
+.label {
+  width: 15px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .fileInput {
+    width: 10px;
+  }
 }
