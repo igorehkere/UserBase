@@ -1,3 +1,61 @@
+@import '../../styles/mixins';
+@import '../../styles/vars';
+
 .button {
     width: 100px;
+    padding: 8px 15px;
+    color: $white;
+    background-color: #0a980a;
+    border: none;
+    font-weight: bold;
+    border-radius: $borderRaduisSmall;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    z-index: 2;
+    &.color-green {
+		background-color: #0a980a;
+		&:hover {
+			background-color: #21b821;
+		}
+		&:active {
+			background-color: #39d039
+		}
+	}
+    &.color-red {
+		background-color: $red;
+		&:hover {
+			background-color: rgba(128, 0, 0, 0.856);
+		}
+		&:active {
+			background-color: rgba(128, 0, 0, 0.534);
+		}
+	}
+    &:disabled {
+        pointer-events: none;
+        background-color: #929292;
+        color: #d9d9d9
+    }
+    &.loading {
+        @include loader($borderWidth: 3px, $size: 20px, $color: $white);
+        .text {
+            opacity: 0;
+        }
+    }
+}
+
+.buttonNavi {
+    height: 35px;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: 600;
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    border-radius: 10px
+}
+.buttonNavi:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: background-color 0.1s ease-in;
 }

@@ -108,30 +108,32 @@ export const UploadToCloudinary = <TTypeName extends CloudinaryUploadTypeName>({
           <img className={css.preview} alt="" src={getCloudinaryUploadUrl(value, type, preset)} />
         </div>
       )}
-      <ButtonUploadImage
-        type="button"
-        onClick={() => inputEl.current?.click()}
-        loading={loading}
-        disabled={loading || disabled}
-        color="green"
-      >
-        {value ? 'Обновить снова' : 'Обновить'}
-      </ButtonUploadImage>
       <div className={css.buttons}>
-        {!!value && !loading && (
-          <ButtonUploadImage
-            type="button"
-            color="red"
-            onClick={() => {
-              void formik.setFieldValue(name, null);
-              formik.setFieldError(name, undefined);
-              void formik.setFieldTouched(name);
-            }}
-            disabled={disabled}
-          >
-            Удалить фото
-          </ButtonUploadImage>
-        )}
+        <ButtonUploadImage
+          type="button"
+          onClick={() => inputEl.current?.click()}
+          loading={loading}
+          disabled={loading || disabled}
+          color="green"
+        >
+          {value ? 'Обновить снова' : 'Обновить'}
+        </ButtonUploadImage>
+        <div>
+          {!!value && !loading && (
+            <ButtonUploadImage
+              type="button"
+              color="red"
+              onClick={() => {
+                void formik.setFieldValue(name, null);
+                formik.setFieldError(name, undefined);
+                void formik.setFieldTouched(name);
+              }}
+              disabled={disabled}
+            >
+              Удалить фото
+            </ButtonUploadImage>
+          )}
+        </div>
       </div>
       {invalid && <div className={css.error}>{error}</div>}
     </div>
