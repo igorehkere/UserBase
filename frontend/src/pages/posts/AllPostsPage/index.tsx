@@ -9,8 +9,8 @@ import { LikeButton } from '../../../components/LikeButton';
 import InfiniteScroll from 'react-infinite-scroller';
 import { BlockPostPage } from '../BlockPostPage';
 import { canBlockPosts } from '@authwithback/backend/src/utils/canBlockPosts';
-import { getAvatarUrl } from '@authwithback/shared/src/cloudinary';
-
+import { getAvatarUrl, getCloudinaryUploadUrl } from '@authwithback/shared/src/cloudinary';
+import ImageGallery from 'react-image-gallery';
 
 export function AllPostsPage() {
   const { data, isError, isLoading, error, hasNextPage, fetchNextPage, isFetchingNextPage } =
@@ -25,7 +25,7 @@ export function AllPostsPage() {
       }
     );
   const me = useMe();
-  
+
   return (
     <>
       <Helmet>
@@ -65,9 +65,19 @@ export function AllPostsPage() {
                             <img alt="" className={css.logoPost} src={getAvatarUrl(post.author.avatar, 'small')} />
                             <p>{`${post.author.firstname} ${post.author.lastname}`}</p>
                           </div>
-                          {!!canBlockPosts(me) && <BlockPostPage post={post}/>}
+                          {!!canBlockPosts(me) && <BlockPostPage post={post} />}
                         </div>
-                        <img alt="Soon" className={css.imagePost} src="/public/favicon2.png" />
+                        {!!post.images.length && (
+                          <div className={css.gallery}>
+                            <ImageGallery
+                              showPlayButton={false}
+                              showFullscreenButton={false}
+                              items={post.images.map((image) => ({
+                                original: getCloudinaryUploadUrl(image, 'image', 'large'),
+                              }))}
+                            />
+                          </div>
+                        )}
                         <p className={css.text}>{post.text}</p>
                         <div className={css.footerPost}>
                           <div className={css.likes}>

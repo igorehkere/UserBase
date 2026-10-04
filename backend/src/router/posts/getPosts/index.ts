@@ -20,6 +20,7 @@ export const getPostsTrpcRoute = trpcLoggerProcedure.input(zGetPostsTrpcInput).q
       },
       id: true,
       text: true,
+      images: true,
       createdAt: true,
       authorId: true,
       author: true,

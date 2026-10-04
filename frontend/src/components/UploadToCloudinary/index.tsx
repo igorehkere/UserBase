@@ -10,7 +10,7 @@ import { useRef, useState } from 'react';
 import cn from 'classnames';
 import { ButtonUploadImage } from '../ButtonUploadImage';
 
-const useUploadToCloudinary = (type: CloudinaryUploadTypeName) => {
+export const useUploadToCloudinary = (type: CloudinaryUploadTypeName) => {
   const prepareCloudinaryUpload = trpc.prepareCloudinaryUpload.useMutation();
 
   const uploadToCloudinary = async (file: File) => {

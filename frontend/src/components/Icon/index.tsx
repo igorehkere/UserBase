@@ -6,6 +6,7 @@ import { BiBookContent } from 'react-icons/bi';
 import { CgUser } from 'react-icons/cg';
 import { TbArrowLeftFromArc } from 'react-icons/tb';
 import { FcCancel } from 'react-icons/fc';
+import { RxCross2 } from 'react-icons/rx';
 
 const icons = {
   likeEmpty: AiOutlineHeart,
@@ -16,6 +17,7 @@ const icons = {
   postsIcon: BiBookContent,
   exitIcon: TbArrowLeftFromArc,
   blockPost: FcCancel,
+  deleteCross: RxCross2,
 };
 
 export const Icon = ({ name, ...restProps }: { name: keyof typeof icons } & IconBaseProps) => {

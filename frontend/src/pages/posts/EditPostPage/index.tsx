@@ -10,6 +10,7 @@ import { Button } from '../../../components/Button';
 import { motion } from 'framer-motion';
 import { createPortal } from "react-dom";
 import type { useMe } from '../../../lib/ctx';
+import { UploadsToCloudinary } from '../../../components/UploadsToCloudinary';
 
 type editPostType = {
   getPostForModal: (post: NonNullable<ReturnType<typeof useMe>>['posts'][number] | null) => void;
@@ -20,7 +21,7 @@ export const EditPostContent = ({ getPostForModal, post }: editPostType) => {
   const updatePost = trpc.updatePost.useMutation();
   const trpcUtils = trpc.useContext();
   const { formik, buttonProps, alertProps } = useForm({
-    initialValues: _.pick(post, ['text']),
+    initialValues: _.pick(post, ['text', 'images']),
     validationSchema: zUpdatePostTrpcInput.omit({
       postId: true,
     }),
@@ -66,6 +67,7 @@ export const EditPostContent = ({ getPostForModal, post }: editPostType) => {
         <form onSubmit={formik.handleSubmit} className={css.forma}>
           <FormItems>
             <TextArea name="text" label="" formik={formik} />
+            <UploadsToCloudinary label="Images" name="images" type="image" preset="preview" formik={formik}/>
             <Alert {...alertProps} />
             <Button {...buttonProps}>Изменить</Button>
           </FormItems>

@@ -6,6 +6,7 @@ import { FormItems } from '../FormItems';
 import { TextArea } from '../TextArea';
 import { Alert } from '../Alert';
 import { Button } from '../Button';
+import { UploadsToCloudinary } from '../UploadsToCloudinary';
 
 export const CreatePost = () => {
   const trpcUtils = trpc.useContext();
@@ -28,6 +29,7 @@ export const CreatePost = () => {
   const { formik, alertProps, buttonProps } = useForm({
     initialValues: {
       text: '',
+      images: [],
     },
     validationSchema: zCreatePostTrpcInput,
     onSubmit: async (values) => {
@@ -40,6 +42,7 @@ export const CreatePost = () => {
       <form onSubmit={formik.handleSubmit}>
         <FormItems>
           <TextArea label="" name="text" formik={formik} />
+          <UploadsToCloudinary label="" name="images" type="image" preset="preview" formik={formik}></UploadsToCloudinary>
           <Alert {...alertProps} />
           <Button {...buttonProps}>Создать</Button>
         </FormItems>

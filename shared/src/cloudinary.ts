@@ -20,11 +20,11 @@ export const cloudinaryUploadTypes = {
   },
   image: {
     folder: 'image',
-    transformation: 'w_1000,h_1000,c_limit',
+    transformation: 'w_800,h_600,c_limit',
     format: 'jpg',
     presets: {
       preview: 'w_200,h_200,c_fit,q_80',
-      large: 'w_1000,h_1000,c_limit,q_80',
+      large: 'w_800,h_600,c_limit',
     },
   },
 } satisfies Record<string, CloudinaryUploadType>;

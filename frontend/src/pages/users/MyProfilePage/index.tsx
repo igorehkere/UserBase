@@ -9,8 +9,9 @@ import { AnimatePresence } from 'framer-motion';
 import { HiOutlinePencil } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { getEditMyProfile } from '../../../lib/routes';
-import { getAvatarUrl } from '@authwithback/shared/src/cloudinary';
+import { getAvatarUrl, getCloudinaryUploadUrl } from '@authwithback/shared/src/cloudinary';
 import { LikeButton } from '../../../components/LikeButton';
+import ImageGallery from 'react-image-gallery'
 
 export function MyProfilePage() {
   const me = useMe();
@@ -72,7 +73,17 @@ export function MyProfilePage() {
                           <HiOutlinePencil />
                         </button>
                       </div>
-                      <img alt="Soon" className={css.imagePost} src="/public/favicon2.png" />
+                      {!!post.images.length && (
+                          <div className={css.gallery}>
+                            <ImageGallery
+                              showPlayButton={false}
+                              showFullscreenButton={false}
+                              items={post.images.map((image) => ({
+                                original: getCloudinaryUploadUrl(image, 'image', 'large'),
+                              }))}
+                            />
+                          </div>
+                        )}
                       <p className={css.text}>{post.text}</p>
                       <div className={css.footerPost}>
                         <div className={css.likes}>

@@ -30,6 +30,7 @@ enum UserPersmissions {
 model Post {
     id           String     @id @default(uuid())
     text         String
+    images       String[]
     createdAt    DateTime   @default(now())
     authorId     String
     author       User       @relation(fields: [authorId], references: [id])

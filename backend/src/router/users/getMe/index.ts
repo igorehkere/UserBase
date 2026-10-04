@@ -25,6 +25,7 @@ export const getMeTrpcRoute = trpcLoggerProcedure.query(async ({ ctx }) => {
       },
       id: true,
       text: true,
+      images: true,
       createdAt: true,
       authorId: true,
       serialNumber: true,
