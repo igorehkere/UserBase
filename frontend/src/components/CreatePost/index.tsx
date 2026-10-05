@@ -42,9 +42,11 @@ export const CreatePost = () => {
       <form onSubmit={formik.handleSubmit}>
         <FormItems>
           <TextArea label="" name="text" formik={formik} />
-          <UploadsToCloudinary label="" name="images" type="image" preset="preview" formik={formik}></UploadsToCloudinary>
-          <Alert {...alertProps} />
-          <Button {...buttonProps}>Создать</Button>
+          <div className={css.forms}>
+            <Alert {...alertProps} />
+            <Button {...buttonProps}>Создать</Button>
+            <UploadsToCloudinary label="" name="images" type="image" preset="preview" formik={formik} />
+          </div>
         </FormItems>
       </form>
     </div>

@@ -1,3 +1,9 @@
 .createPostContainer {
     width: 50%;
+    .forms {
+        display: flex;
+        // background-color: aliceblue;
+        align-items: center;
+        gap: 15px;
+    }
 }
