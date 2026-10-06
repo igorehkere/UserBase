@@ -11,6 +11,8 @@ import { BlockPostPage } from '../BlockPostPage';
 import { canBlockPosts } from '@authwithback/backend/src/utils/canBlockPosts';
 import { getAvatarUrl, getCloudinaryUploadUrl } from '@authwithback/shared/src/cloudinary';
 import ImageGallery from 'react-image-gallery';
+import { Link } from 'react-router-dom';
+import { getViewUserRoute } from '../../../lib/routes';
 
 export function AllPostsPage() {
   const { data, isError, isLoading, error, hasNextPage, fetchNextPage, isFetchingNextPage } =
@@ -62,8 +64,12 @@ export function AllPostsPage() {
                       <div className={css.card2} key={post.id}>
                         <div className={css.headerPost}>
                           <div className={css.logoPlusName}>
-                            <img alt="" className={css.logoPost} src={getAvatarUrl(post.author.avatar, 'small')} />
-                            <p>{`${post.author.firstname} ${post.author.lastname}`}</p>
+                            <Link to={getViewUserRoute({ userName: post.authorId })}>
+                              <img alt="" className={css.logoPost} src={getAvatarUrl(post.author.avatar, 'small')} />
+                            </Link>
+                            <Link className={css.name} to={getViewUserRoute({ userName: post.authorId })}>
+                              <p >{`${post.author.firstname} ${post.author.lastname}`}</p>
+                            </Link>
                           </div>
                           {!!canBlockPosts(me) && <BlockPostPage post={post} />}
                         </div>

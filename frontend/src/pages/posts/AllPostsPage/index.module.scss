@@ -48,6 +48,9 @@
           display: flex;
           align-items: center;
           gap: 15px;
+          .name:hover {
+            text-decoration: underline;
+          }
         }
         .blockPostButton {
           background-color: white;

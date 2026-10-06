@@ -54,7 +54,33 @@ export const LikeButton = ({ post }: { post: NonNullable<TrpcRouterOutput['getPo
           };
         });
       }
-      return { oldPostsData, oldGetMeData };
+
+      const oldGetUserData = trpcUtils.getUser.getData({
+        userName: post.authorId,
+      });
+
+      if (oldGetUserData) {
+        trpcUtils.getUser.setData({ userName: post.authorId }, (oldData) => {
+          if (!oldData?.user) return oldData;
+
+          return {
+            ...oldData,
+            user: {
+              ...oldData.user,
+              posts: oldData.user.posts.map((p) =>
+                p.id === postId
+                  ? {
+                      ...p,
+                      isLikedByMe,
+                      likesCount: p.likesCount + (isLikedByMe ? 1 : -1),
+                    }
+                  : p
+              ),
+            },
+          };
+        });
+      }
+      return { oldPostsData, oldGetMeData, oldGetUserData };
     },
     onSuccess: () => {
       void trpcUtils.getPosts.invalidate();
