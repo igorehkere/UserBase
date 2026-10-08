@@ -36,7 +36,7 @@ export const getUserTrpcRoute = trpcLoggerProcedure
           id: true,
         },
         where: {
-          userId: user?.id,
+          userId: ctx.me?.id,
         },
       },
       id: true,
